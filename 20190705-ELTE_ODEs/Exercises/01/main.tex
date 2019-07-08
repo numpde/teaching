@@ -1,10 +1,259 @@
-\documentclass[12pt]{article}
+\documentclass[12pt,a4paper]{article}
 
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amssymb, amsmath}
 \usepackage{fullpage}
+\usepackage{parskip}
+\usepackage{url}
+
+\newcommand{\from}{\colon}
+%
+\newcounter{task}[section]
+\newcommand{\newtask}{\refstepcounter{task}{{\ }\\\textbf{1.\thetask}}}
 
 \begin{document}
 
-Differential Equations: Practise set 1.
+    \begin{minipage}{0.6\textwidth}
+        Differential equations
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.4\textwidth}
+        \raggedleft
+        ELTE, autumn 2019/20
+    \end{minipage}
+    
+    
+    \newtask %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    Sketch all possible continuously differentiable solutions
+    of $\dot{x}(t) = -x(t)$, 
+    $t \in \mathbb{R}$.
+    %
+    What do they have in common?
+
+    
+    \newtask %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    Develop a solution formula to
+    the initial value problem
+    \begin{align}
+        \dot{x}(t) = g(t) h(x(t)),
+        \qquad
+        x(t_0) = x_0
+        ,
+    \end{align}
+    in terms of the given functions $g$ and $h$.
+    %
+    Apply to
+    \begin{itemize}
+    \item
+        $\dot{x}(t) = t \, x(t)$,
+    \item
+        $\dot{x}(t) = t / x(t)$,
+    \item
+        $\dot{x}(t) = x^2(t)$,
+    \item  
+        $\dot{x}(t) = \sqrt{ x(t) }$,
+    \item
+        $\dot{x}(t) = (1 + t^2) (1 + x^2(t))$,
+    \item
+        $\dot{x}(t) = x(t) \log x(t)$.
+    \end{itemize}
+    %
+    What is the maximal temporal interval of existence in each case?
+
+    
+    \newtask %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    Give the maximal interval of existence $(0, t^\star)$
+    for the initial value problem
+    $\dot{x}(t) = x^2(t)$
+    with
+    $x(0) := x_0 > 0$.
+    
+    \begin{itemize}
+    \item 
+        Why is $t^\star$ called the ``blow up time''?
+    \item
+        Can you continue the solution past the blow up time?
+    \end{itemize}
+
+    
+    Now consider 
+    $\dot{z}(t) = z^2(t)$, $t > 0$,
+    for a complex-valued function $z$
+    with the intial value
+    $z(0) = x_0 + i \epsilon$,
+    where $x_0 > 0$ and $\epsilon \neq 0$ are real.
+    %
+    Where needed, assume $x_0 = 1$.
+
+    \begin{itemize}
+    \item 
+        What happens to the blow up time?
+    \item
+        Decomposing $z = x + i y$,
+        write down the differential equations for $x$ and $y$.
+    \item
+        Argue that $x^2(t) + (y(t) - R_0)^2 = R_0^2$
+        for a certain real constant $R_0$
+        and
+        comment.
+    \item
+        Sketch the evolution in $(t, x, y)$-space 
+        for a small $\epsilon > 0$.
+        %
+        What happens for $\epsilon \searrow 0$?
+    \end{itemize}
+
+    
+    
+    \newtask %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    Develop a solution formula to
+    the initial value problem
+    \begin{align}
+        \dot{x}(t) = a(t) x(t) + b(t)
+        ,
+        \qquad
+        x(t_0) = x_0
+        ,
+    \end{align}
+    in terms of the given functions $a$ and $b$.
+    %
+    \begin{itemize}
+    \item
+        Suppose $a$ and $b$ are indenpendent of $t$.
+        Investigate the limits $a \to 0$ and $b \to 0$.
+    \item
+        Apply your formula to $t \, \dot{x}(t) = 2 x(t) + t$.
+        %
+        Don't forget to discuss $t = 0$.
+    \item
+        Check your formula on examples of your choice.
+    \item
+        Is this a good model for global seafood stock?
+    \item
+        Via a suitable transformation,
+        solve 
+        $\dot{y}(t) = y(t) - y^\alpha(t)$,
+        where $\alpha \in \mathbb{R}$.
+        %
+        What is remarkable about this 
+        ``Bernoulli differential equation''?
+    \item
+        Solve the ``logistic differential equation''
+        $\dot{y}(t) = y(t) (1 - y(t))$
+        with $0 \leq y(0) \leq 1$.
+        %
+        Explain this model
+        in terms of ``growth'' and ``competition''.
+    \item
+        Propose a better model for global seafood stock.
+    \end{itemize}
+
+    
+    \newtask %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    Propose a nontrivial system of differential equations
+    ``$\dot{x}(t) = \ldots$,
+    $\dot{y}(t) = \ldots$''
+    together with an initial condition at $t = 0$
+    for which the function
+    %
+    \begin{align}
+        t \mapsto v(t) := x^2(t) + y^2(t)
+    \end{align}
+    %
+    satisfies, for all $t > 0$,
+    %
+    \begin{itemize}
+    \item
+        $\dot{v}(t) = -2 v(t)$.
+    \item 
+        $\dot{v}(t) = 0$.
+    \item
+        $\dot{v}(t) = 2 x(t) + 2 y(t)$.
+    \end{itemize}
+    %
+    In each case, 
+    comment graphically on the possible trajectories $t \mapsto (x(t), y(t))$ in $\mathbb{R}^2$.
+
+    
+
+    \newtask %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    On the interval $I := (0, 1)$
+    define
+    the functions
+    $
+        \varphi_k := \sqrt{2} \sin(\pi k \,\cdot\,)
+    $.
+    %
+    Check whether the set
+    $\Phi := \{ \varphi_k : k = 1, 2, 3, \ldots \}$
+    is
+    %
+    \begin{itemize}
+    \item
+        orthonormal
+        in the Lebesgue space $L_2(I)$,
+    \item
+        a basis thereof.
+    \end{itemize}
+
+    Now consider the heat equation
+    \begin{align}
+        \partial_t u(t, x) - \partial_{x x} u(t, x)
+        & =
+        f(t, x),
+        \qquad
+        t > 0,
+        \quad
+        x \in I
+        ,
+    \end{align}
+    with the initial condition $u(0, \,\cdot\,) = g$
+    and the boundary conditions $u|_{\partial I} = 0$.
+    
+    \begin{itemize}
+    \item
+        What is the physical motivation for this PDE?
+    \item
+        Solve the PDE formally by expansion in a suitable spatial basis.
+    \item
+        What qualitative properties of $u$ can you infer?
+    \item
+        Can you propose a suitable functional framework?
+    \item
+        Does the solution $u$ depend continuously 
+        on the data $f$ and $g$?
+    \end{itemize}
+
+    
+    \newtask %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    These days, papers are published with a short abstract
+    or even with a few ``highlights'' as bullet points. 
+    %
+    Write the ``highlights''
+    emphasizing the role of differential equations for 
+    \begin{quote}
+        \textsc{R.~M.~Solow},
+        \emph{A contribution to the theory of economic growth},
+        The quarterly journal of economics, 70 (1956), pp.~65--94.
+    \end{quote}
+    according to Elsevier's guidelines: 
+    \begin{quote}
+        {\small\url{https://www.elsevier.com/authors/journal-authors/highlights}}
+    \end{quote}
+    
+    
 
 
+    \vfill
+    \hfill
+    R.A.,
+    \today
 \end{document}
