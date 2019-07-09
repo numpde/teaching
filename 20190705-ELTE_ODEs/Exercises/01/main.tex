@@ -10,7 +10,9 @@
 \newcommand{\from}{\colon}
 %
 \newcounter{task}[section]
-\newcommand{\newtask}{\refstepcounter{task}{{\ }\\\textbf{1.\thetask}}}
+\newcommand{\newtask}{\refstepcounter{task}{\vspace{\baselineskip}\textbf{1.\thetask}}}
+%
+\newcommand{\norm}[1]{\left\|#1\right\|}
 
 \begin{document}
 
@@ -32,6 +34,77 @@
     %
     What do they have in common?
 
+    
+    \newtask %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    Let $\chi$, $g$ and $a \geq 0$ be continuous real-valued
+    functions on $[0, T]$, and assume that
+    \begin{align}
+        \chi(t) 
+        \leq 
+        g(t) +
+        \int_0^t \chi(s) a(s) ds
+        ,
+        \quad
+        \forall t \in [0, T]
+        .
+    \end{align}
+    %
+    \begin{itemize}
+    \item 
+        Prove the Gronwall inequality:
+        %
+        \begin{align}
+            \chi(t) 
+            \leq
+            g(t) +
+            \int_0^t 
+                g(s)
+                a(s)
+                \exp \left( \int_s^t a(\tau) d\tau \right)
+            ds,
+            \quad
+            \forall t \in [0, T].
+        \end{align}
+        
+        Hint:
+        start with a differential equation for 
+        $x(t) := \int_0^t \chi(s) a(s) ds$.
+    \item
+        Assume $g$ is differentiable.
+        %
+        Prove the corollary:
+        %
+        \begin{align}
+            \chi(t) 
+            \leq 
+            g(0) \int_0^t a(s) ds
+            +
+            \int_0^t g'(s) 
+            \exp \left(
+                \int_s^t a(\tau) d\tau
+            \right)
+            ds
+            ,
+            \quad
+            \forall t \in [0, T].
+        \end{align}
+    \item
+        Suppose $f \from [0, T] \times \mathbb{R} \to \mathbb{R}$
+        is Lipschitz continuous in the second variable.
+        %
+        Let $x$ solve the differential equation 
+        $\dot{x}(t) = f(t, x(t))$ on the interval $(0, T)$.
+        %
+        Show that the map
+        $x(0) \mapsto x(T)$
+        is Lipschitz continuous.
+        %
+        Is your statement sharp?
+    \end{itemize}
+    
+    
+    
     
     \newtask %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
