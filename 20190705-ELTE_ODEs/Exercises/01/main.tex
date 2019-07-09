@@ -1,5 +1,7 @@
 \documentclass[12pt,a4paper]{article}
 
+\setcounter{section}{1}
+
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage{amssymb, amsmath}
@@ -8,34 +10,39 @@
 \usepackage{url}
 
 \newcommand{\from}{\colon}
-%
-\newcounter{task}[section]
-\newcommand{\newtask}{\refstepcounter{task}{\vspace{\baselineskip}\textbf{1.\thetask}}}
-%
 \newcommand{\norm}[1]{\left\|#1\right\|}
 
 \begin{document}
-
-    \begin{minipage}{0.6\textwidth}
-        Differential equations
-    \end{minipage}
+    Differential equations
     \hfill
-    \begin{minipage}{0.4\textwidth}
-        \raggedleft
-        ELTE, autumn 2019/20
-    \end{minipage}
+    ELTE, autumn 2019/20
     
     
-    \newtask %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
-    Sketch all possible continuously differentiable solutions
-    of $\dot{x}(t) = -x(t)$, 
-    $t \in \mathbb{R}$.
+    Sketch all $C^1(\mathbb{R})$ solutions 
+    of $\dot{x}(t) = -x(t)$.
     %
     What do they have in common?
+    
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    Find, if possible,
+    a differential equation $\dot{x}(t) = \ldots$
+    with a nontrivial solution in $C^1([0, \infty))$
+    for which
+    $x(t) = 0$ for all $t$ sufficiently large 
+    (i.e.~$x$ converges in finite time).
 
     
-    \newtask %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     Let $\chi$, $g$ and $a \geq 0$ be continuous real-valued
     functions on $[0, T]$, and assume that
@@ -105,8 +112,9 @@
     
     
     
-    
-    \newtask %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     Develop a solution formula to
     the initial value problem
@@ -137,7 +145,9 @@
     What is the maximal temporal interval of existence in each case?
 
     
-    \newtask %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     Give the maximal interval of existence $(0, t^\star)$
     for the initial value problem
@@ -182,7 +192,9 @@
 
     
     
-    \newtask %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     Develop a solution formula to
     the initial value problem
@@ -227,7 +239,9 @@
     \end{itemize}
 
     
-    \newtask %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     Propose a nontrivial system of differential equations
     ``$\dot{x}(t) = \ldots$,
@@ -255,7 +269,9 @@
 
     
 
-    \newtask %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     On the interval $I := (0, 1)$
     define
@@ -305,7 +321,9 @@
     \end{itemize}
 
     
-    \newtask %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     These days, papers are published with a short abstract
     or even with a few ``highlights'' as bullet points. 
@@ -325,8 +343,5 @@
     
 
 
-    \vfill
-    \hfill
-    R.A.,
-    \today
+    \vfill\hfill R.A., \today
 \end{document}
