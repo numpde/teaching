@@ -8,6 +8,7 @@
 \usepackage{fullpage}
 \usepackage{parskip}
 \usepackage{url}
+\usepackage{enumitem}
 
 \newcommand{\from}{\colon}
 \newcommand{\norm}[1]{\left\|#1\right\|}
@@ -36,81 +37,108 @@
     a differential equation $\dot{x}(t) = \ldots$
     with a nontrivial solution in $C^1([0, \infty))$
     for which
-    $x(t) = 0$ for all $t$ sufficiently large 
-    (i.e.~$x$ converges in finite time).
+    $x(t) = 0$ for all $t$ sufficiently large, 
+    i.e.~$x$ converges in finite time.
+    
+    
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    
+    Let $\gamma$, $g$ and $a \geq 0$ be continuous real-valued
+    functions on $[0, T]$.
+    %
+    
+    \begin{itemize}
+    \item
+        Sketch 
+        the function
+        $
+            s \mapsto A(s) :=
+            \exp( \int_s^T a(\tau) d\tau )
+        $.
+    \end{itemize}
+    
+    Suppose 
+    %
+    \begin{align}
+        \gamma(t) 
+        \leq 
+        g(t) +
+        \int_0^t \gamma(s) a(s) ds
+        %
+        \quad
+        %
+        \forall t \in [0, T]
+        .
+    \end{align}
+
+    
+    Prove
+    
+    \begin{itemize}
+    \item 
+        the Gronwall--Bellman inequality:
+        %
+        \begin{align}
+            \gamma(T) 
+            \leq
+            g(T) +
+            \int_0^T g(s) a(s) A(s) ds
+            .
+        \end{align}
+    \item
+        assuming that $g$ is continuously differentiable,
+        the corollary:
+        %
+        \begin{align}
+            \gamma(T) 
+            \leq 
+            g(0) A(0)
+            +
+            \int_0^T g'(s) A(s) ds
+            .
+        \end{align}
+    \end{itemize}
+        
+    It may be helpful to
+    start with a differential inequality for 
+    $x(t) := \int_0^t \gamma(s) a(s) ds$.
 
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \subsection{}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
-    Let $\chi$, $g$ and $a \geq 0$ be continuous real-valued
-    functions on $[0, T]$, and assume that
-    \begin{align}
-        \chi(t) 
-        \leq 
-        g(t) +
-        \int_0^t \chi(s) a(s) ds
-        ,
-        \quad
-        \forall t \in [0, T]
-        .
-    \end{align}
+    Fix $T > 0$,
+    suppose $f \from [0, T] \times \mathbb{R} \to \mathbb{R}$
+    is Lipschitz continuous in the second variable.
     %
+    Assume there exists a solution to
+    the differential equation 
+    $\dot{x}(t) = f(t, x(t))$ on the interval $(0, T)$
+    for any initial value near some fixed $x_0$.
+    
     \begin{itemize}
-    \item 
-        Prove the Gronwall inequality:
-        %
-        \begin{align}
-            \chi(t) 
-            \leq
-            g(t) +
-            \int_0^t 
-                g(s)
-                a(s)
-                \exp \left( \int_s^t a(\tau) d\tau \right)
-            ds,
-            \quad
-            \forall t \in [0, T].
-        \end{align}
-        
-        Hint:
-        start with a differential equation for 
-        $x(t) := \int_0^t \chi(s) a(s) ds$.
     \item
-        Assume $g$ is differentiable.
-        %
-        Prove the corollary:
-        %
-        \begin{align}
-            \chi(t) 
-            \leq 
-            g(0) \int_0^t a(s) ds
-            +
-            \int_0^t g'(s) 
-            \exp \left(
-                \int_s^t a(\tau) d\tau
-            \right)
-            ds
-            ,
-            \quad
-            \forall t \in [0, T].
-        \end{align}
-    \item
-        Suppose $f \from [0, T] \times \mathbb{R} \to \mathbb{R}$
-        is Lipschitz continuous in the second variable.
-        %
-        Let $x$ solve the differential equation 
-        $\dot{x}(t) = f(t, x(t))$ on the interval $(0, T)$.
-        %
-        Show that the map
+        Show that 
         $x(0) \mapsto x(T)$
         is Lipschitz continuous.
         %
         Is your statement sharp?
+    \item
+        Do we need to \emph{assume} existence?
+    \item
+        Suppose $f$ depends on a parameter $p$.
+        Fix $x_p(0)$.
+        What is the derivative of the solution $x_p(T)$ w.r.t.~$p$?
+        Propose conditions on $f$ for the derivative to exist.
     \end{itemize}
     
     
+
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \subsection{}
@@ -143,6 +171,81 @@
     \end{itemize}
     %
     What is the maximal temporal interval of existence in each case?
+
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    The following are simple (and simplistic) models for 
+    the volume of a growing tumor:
+    \begin{itemize}
+    \item 
+        $\dot{V} = a V$
+        \hfill
+        (Exponential)
+    \item
+        $\dot{V} = a V^b$
+        \hfill
+        (Mendelsohn)
+    \item
+        $\dot{V} = a V (1 - \frac1b V)$
+        \hfill
+        (Logistic)
+    \item
+        $\dot{V} = a V \, (b + V)^{-1}$
+        \hfill
+        (Linear)
+    \item
+        $\dot{V} = a V \, (b + V)^{-1/3}$
+        \hfill
+        (Surface)
+    \item
+        $\dot{V} = a V \log \frac{b}{c + V}$
+        \hfill
+        (Gompertz)
+    \item
+        $\dot{V} = a V^{2/3} - b V$
+        \hfill
+        (Bertalanffy)
+    \end{itemize}
+    %
+    Herein, $a$, $b$ and $c$ are positive constants.
+    %
+    For each model, answer the following questions:
+    %
+    \begin{enumerate}
+    \item 
+        What is the maximum size of the tumor?
+    \item
+        What is the doubling time?
+    \item
+        What is the condition on the constants for postivie growth?
+    \item
+        What a possible motivation for the model?
+    \end{enumerate}
+    
+    %
+    
+    Now add a term ``$-\gamma V$''.
+    %
+    \begin{enumerate}[resume]
+    \item
+        Interpret this term.
+    \item
+        What is now the maximum size of the tumor?
+    \item
+        What is the minimum concentration $\gamma$ for complete cure?
+    \end{enumerate}
+    
+    %
+    
+    Using the experimental data from
+    \begin{quote}
+        \url{https://www.nature.com/articles/s41598-019-39109-1/figures/4}
+    \end{quote}
+    select a suitable model for Fig.~4a and 4b
+    and estimate the parameters.
 
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -273,7 +376,7 @@
     \subsection{}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
-    On the interval $I := (0, 1)$
+    On the ``spatial'' interval $I := (0, 1)$
     define
     the functions
     $
@@ -320,6 +423,115 @@
         on the data $f$ and $g$?
     \end{itemize}
 
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    Let $A \in \mathbb{R}^{N \times N}$ be a symmetric positive definite matrix.
+    %
+    Let $J := (0, T)$ be a nontrivial interval.
+    %
+    Let $g \in \mathbb{R}^N$ and $f \from J \to \mathbb{R}^N$.
+    %
+    Consider the bilinear form
+    \begin{align}
+        B(u, v) :=
+        \int_J \{
+            \langle A u, v \rangle
+            +
+            \langle A^{-1} \dot{u}, \dot{v} \rangle
+        \} dt
+        +
+        \langle u(T), v(T) \rangle
+    \end{align}
+    and the functional
+    \begin{align}
+        F(v) :=
+        \int_J 
+            \langle f, v + A^{-1} \dot{v} \rangle
+        dt
+        +
+        \langle g, v(0) \rangle
+        ,
+    \end{align}
+    where $u$ and $v$ are any differentiable functions $J \to \mathbb{R}^N$.
+    
+    \begin{itemize}
+    \item
+        What can you say about the functional
+        $
+            \mathcal{J}(u) :=
+            \frac12 B(u, u) - F(u)
+        $?
+    \item
+        What is the first order condition for the minimum of $\mathcal{J}$?
+    \item
+        What is the differential equation satisfied by the minimum?
+    \end{itemize}
+
+    
+
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    Consider the first order system of differential equations
+    for $N$ functions $\mathbf{x}_i \from \mathbb{R} \to \mathbb{R}^d$,
+    \begin{align}
+        \dot{\mathbf{x}}_i
+        =
+        \frac{1}{N} 
+        \sum_{j \neq i}
+        \phi(|\mathbf{x}_j - \mathbf{x}_i|)
+        ( \mathbf{x}_j - \mathbf{x}_i )
+        ,
+        \quad
+        i = 1, \ldots, N
+        ,
+    \end{align}
+    where $\phi(r)$ is the ``influence function'',
+    say $\phi(r) := (1 + r)^{-s}$ for some $s > 0$.
+    
+    \begin{itemize}
+    \item 
+        Explain qualitatively the behavior of the model.
+    \item
+        What could this be a model for?
+    \item
+        Find an invariant.
+    \item
+        What do you expect to happen in the long run?
+    \item
+        Can you verify your hypothesis?
+    \end{itemize}
+    
+    Consider the modified system 
+    \begin{align}
+        \dot{\mathbf{x}}_i
+        =
+        \frac{1}{N}
+        \sum_{j \neq i}
+        \frac{ \phi_{i j} }{ \sum_k \phi_{i k} }
+        ( \mathbf{x}_j - \mathbf{x}_i )
+        ,
+    \end{align}
+    where $\phi_{i j} := \phi(| \mathbf{x}_j - \mathbf{x}_i |)$.
+    
+    \begin{itemize}
+    \item 
+        What could be the motivation for this modification?
+    \item
+        How does this system differ from the previous one in an essential way?
+    \end{itemize}
+
+    
+
+    
+
+    
+
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \subsection{}
@@ -339,6 +551,95 @@
     \begin{quote}
         {\small\url{https://www.elsevier.com/authors/journal-authors/highlights}}
     \end{quote}
+    
+    
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    The following is from a problem 
+    in the IMO 2011
+    by Geoffrey Smith (UK):
+    %
+    \begin{quote}
+        Let $S$ be a set of $N \geq 2$ points in the plane (no three points are collinear). 
+        A \emph{windmill} 
+        is a process that 
+        starts with a line $\ell_0$ through a single point $P_0 \in S$. 
+        The line rotates clockwise about the pivot $P_0$ until 
+        it meets some other point $P_1 \in S$. 
+        This point takes over as the new pivot.
+    \end{quote}
+    %
+    Describe this windmill as a differential equation.
+    
+    Optionally, solving the problem itself:
+    %
+    \begin{quote}
+        Show that there is a choice of $P_0$ and $\ell_0$
+        for which
+        the resulting windmill 
+        meets each point of $S$ infinitely many times.
+    \end{quote}
+    
+    %
+    
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    The Navier--Stokes equations 
+    in cylindrical coordinates
+    for a fluid flowing
+    through a round pipe
+    reduce 
+    under reasonable assumptions 
+    (is steady, symmetric, laminar and fully developed flow)
+    to 
+    \begin{align}
+        \frac{1}{r}
+        \frac{d}{dr} \left( r \mu \frac{d u}{dr} \right)
+        =
+        \frac{d p}{d z}
+        ,
+    \end{align}
+    where $u$ is the axial velocity along the pipe
+    (independent of $z$)
+    and $p$ is the pressure
+    (independent of $r$),
+    as functions of the radial coordinate $r$ and the axial coordinate $z$.
+    %
+    We use SI units.
+    %
+    The constant $\mu$ is the dynamic viscosity of the fluid
+%     has the unit of [pressure $\times$ time]
+    that expresses its resistance to flow.
+    %
+    The ``no-slip'' boundary conditions 
+    dictate that 
+    the velocity must be zero at the wall.
+    
+    \begin{itemize}
+    \item  
+        Why are both sides equal to some constant $C$?
+        What is the physical meaning of this constant?
+    \item
+        Assume the pressure drop across the pipe 
+        of length $L$ is $\Delta P < 0$.
+        What is the flow rate [volume / time]
+        of the fluid?
+    \item
+        Estimate the flow rate out of the water tap
+        and 
+        thus the pressure at the source.
+    \end{itemize}
+
+
+    %
+    
+    
     
     
 
