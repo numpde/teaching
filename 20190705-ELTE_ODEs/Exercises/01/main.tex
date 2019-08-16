@@ -23,10 +23,33 @@
     \subsection{}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
-    Sketch all $C^1(\mathbb{R})$ solutions 
-    of $\dot{x}(t) = -x(t)$.
-    %
-    What do they have in common?
+    Consider $C^1(\mathbb{R})$ 
+    solutions of the differential equation $\dot{x}(t) = -x(t)$.
+    \begin{itemize}
+    \item 
+        Sketch all solutions in the $x$-$t$ plane.
+    \item
+        What do they have in common?
+    \item
+        For $T > 0$,
+        how do
+        $x(0) \mapsto x(T)$
+        and
+        $x(0) \mapsto x(-T)$
+        differ qualitatively?
+    \item
+        Parameterize all solutions implicitly
+        as $F(x, t, \lambda) = 0$.
+    \item
+        Indicate the ``Lie group orbits'' $\lambda \mapsto F(x, t, \lambda)$ for various fixed $(x, t)$.
+    \item
+        Find and solve a differential equation
+        for the curve in the $x$-$t$ plane
+        that goes
+        through $(c, 0)$
+        and is perpendicular
+        to the solutions.
+    \end{itemize}
     
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -34,10 +57,10 @@
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     Find, if possible,
-    a differential equation $\dot{x}(t) = \ldots$
+    a differential equation ``$\dot{x}(t) = \ldots$''
     with a nontrivial solution in $C^1([0, \infty))$
     for which
-    $x(t) = 0$ for all $t$ sufficiently large, 
+    $x(t) = 0$ for all $t$ sufficiently large ---
     i.e.~$x$ converges in finite time.
     
     
@@ -220,7 +243,7 @@
     \item
         What is the doubling time?
     \item
-        What is the condition on the constants for postivie growth?
+        What is the condition on the constants for positive growth?
     \item
         What a possible motivation for the model?
     \end{enumerate}
@@ -432,7 +455,7 @@
     %
     Let $J := (0, T)$ be a nontrivial interval.
     %
-    Let $g \in \mathbb{R}^N$ and $f \from J \to \mathbb{R}^N$.
+    Let $g \in \mathbb{R}^N$ and $f \from J \to \mathbb{R}^N$ continuous.
     %
     Consider the bilinear form
     \begin{align}
@@ -455,7 +478,10 @@
         \langle g, v(0) \rangle
         ,
     \end{align}
-    where $u$ and $v$ are any differentiable functions $J \to \mathbb{R}^N$.
+    defined for
+    arbitrary continuously
+    differentiable 
+    $u, v \from J \to \mathbb{R}^N$.
     
     \begin{itemize}
     \item
@@ -468,6 +494,8 @@
         What is the first order condition for the minimum of $\mathcal{J}$?
     \item
         What is the differential equation satisfied by the minimum?
+    \item
+        What are practical implications?
     \end{itemize}
 
     
@@ -491,7 +519,7 @@
         i = 1, \ldots, N
         ,
     \end{align}
-    where $\phi(r)$ is the ``influence function'',
+    where $\phi$ is the ``influence function'',
     say $\phi(r) := (1 + r)^{-s}$ for some $s > 0$.
     
     \begin{itemize}
@@ -569,7 +597,7 @@
         starts with a line $\ell_0$ through a single point $P_0 \in S$. 
         The line rotates clockwise about the pivot $P_0$ until 
         it meets some other point $P_1 \in S$. 
-        This point takes over as the new pivot.
+        This point takes over as the new pivot, and so on.
     \end{quote}
     %
     Describe this windmill as a differential equation.
@@ -643,5 +671,6 @@
     
 
 
-    \vfill\hfill R.A., \today
+    \vfill\hfill 
+    {\small\textcopyright} R.A., \today
 \end{document}
