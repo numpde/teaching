@@ -70,6 +70,52 @@
     \subsection{}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
+    The following is from
+    \textsc{R.~Fisher},
+    ``The genetical theory of natural selection'', 1930, p.~42:
+    
+    \begin{quote}
+        \small
+        
+        An increase in numbers of any organism
+        will impair its environment
+        in a manner analogous to,
+        and probably more definitely than,
+        an increase in the numbers or efficiency
+        of its competitors.
+        [..]
+        %
+        The situation is represented by
+        the differential equation
+        \begin{align}
+            \frac{d M}{d t} + \frac{M}{C} = W - D
+        \end{align}
+        in which
+        $M$ is the mean of the Malthusian parameter,
+        $C$ is a constant expressing the relation
+        between fitness and population increase [..],
+        $W$ is the rate of actual increase in fitness
+        determined by natural selection,
+        and $D$ is the rate of loss due to 
+        the deterioration of the environment.
+        %
+        If $C$, $W$ and $D$ are constant
+        the equation has the solution
+        \begin{align}
+            M = \frac{W - D}{C} + A e^{-t / C}
+        \end{align}
+        in which $A$ is an arbitrary constant,
+        dependent on the initial conditions.
+    \end{quote}
+    
+    What will the value of $M$ approach to?
+    
+
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
     Find, if possible,
     a differential equation ``$\dot{x}(t) = \ldots$''
     with a nontrivial solution in $C^1([0, \infty))$
@@ -600,8 +646,9 @@
     \subsection{}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
-    The following is from a problem 
-    in the IMO 2011
+    The following is from
+    the IMO 2011,
+    a problem 
     by Geoffrey Smith (UK):
     %
     \begin{quote}
@@ -637,7 +684,7 @@
     for a fluid flowing
     through a round pipe
     reduce 
-    (under reasonable assumptions: steady, symmetric, laminar and fully developed flow)
+    (under reasonable assumptions of steady, symmetric, laminar and fully developed flow)
     to 
     \begin{align}
         \frac{1}{r}
@@ -652,9 +699,9 @@
     (independent of $r$),
     as functions of the radial coordinate $r$ and the axial coordinate $z$.
     %
-    We use SI units.
-    %
-    The constant $\mu$ is the dynamic viscosity of the fluid
+    We use SI units;
+    the constant $\mu$ is the dynamic viscosity [$\mathrm{Pa \times s}$]
+    of the fluid
 %     has the unit of [pressure $\times$ time]
     that expresses its resistance to flow.
     %
@@ -664,15 +711,16 @@
     
     \begin{itemize}
     \item  
-        Why are both sides equal to some constant $C$?
-        What is the physical meaning of this constant?
+        Why are both sides equal to some constant,
+        and
+        what is the physical meaning of this constant?
     \item
-        Assume the pressure drop across the pipe 
+        The pressure drop across the pipe 
         of length $L$ is $\Delta P < 0$.
-        What is the flow rate [volume / time]
-        of the fluid?
+        What is the flow rate [$\mathrm{m^3 / s}$]
+        of the fluid through the pipe?
     \item
-        Estimate the flow rate out of the water tap
+        Estimate the flow rate at the water tap
         and 
         thus the pressure at the source.
     \end{itemize}
