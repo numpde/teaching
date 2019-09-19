@@ -8,15 +8,19 @@
 \usepackage{fullpage}
 \usepackage{parskip}
 \usepackage{url}
+\usepackage{color}
 \usepackage{enumitem}
 
 \newcommand{\from}{\colon}
 \newcommand{\norm}[1]{\left\|#1\right\|}
 
 \begin{document}
-    Differential equations
-    \hfill
-    ELTE, autumn 2019/20
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    Differential equations  \hfill  ELTE, autumn 2019/20
+    \\
+    {\color{white} } \hfill {\tiny Version: \today}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -65,6 +69,59 @@
     Propose and solve a differential equation
     for the concentration $c(t)$ [$\mathrm{m^3/m^3}$] of the pollutant in the lake.
     
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    Excerpt from
+    \textsc{R.~Fisher},
+    ``The genetical theory of natural selection'', 1930, p.~42:
+    
+    \begin{quote}
+        \small
+        
+        An increase in numbers of any organism
+        will impair its environment
+        in a manner analogous to,
+        and probably more definitely than,
+        an increase in the numbers or efficiency
+        of its competitors.
+        [..]
+        %
+        The situation is represented by
+        the differential equation
+        \begin{align}
+            \frac{d M}{d t} + \frac{M}{C} = W - D
+        \end{align}
+        in which
+        $M$ is the mean of the Malthusian parameter,
+        $C$ is a constant expressing the relation
+        between fitness and population increase [..],
+        $W$ is the rate of actual increase in fitness
+        determined by natural selection,
+        and $D$ is the rate of loss due to 
+        the deterioration of the environment.
+        %
+        If $C$, $W$ and $D$ are constant
+        the equation has the solution
+        \begin{align}
+            M = \frac{W - D}{C} + A e^{-t / C}
+        \end{align}
+        in which $A$ is an arbitrary constant,
+        dependent on the initial conditions.
+    \end{quote}
+    
+    Questions:
+    \begin{itemize}
+    \item 
+        What will the value of $M$ approach to?
+    \item
+        What is the fate of the species in this model?
+    \end{itemize}
+
+    
+
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \subsection{}
@@ -255,9 +312,9 @@
     \item 
         What is the maximum size of the tumor?
     \item
-        What is the doubling time?
-    \item
         What is the condition on the constants for positive growth?
+    \item
+        What is then the doubling time?
     \item
         What a possible motivation for the model?
     \end{enumerate}
@@ -378,6 +435,24 @@
         Propose a better model for global seafood stock.
     \end{itemize}
 
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+
+    Derive the Tsiolkovsky equation
+    \begin{align}
+        \Delta v = 
+        v_\textrm{exhaust} 
+        \log \frac{m_\textrm{before}}{m_\textrm{after}}
+    \end{align}
+    that gives the velocity acquired
+    by a propulsion rocket
+    (no external forces).
+    
+
+    
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \subsection{}
@@ -505,7 +580,9 @@
             \frac12 B(u, u) - F(u)
         $?
     \item
-        What is the first order condition for the minimum of $\mathcal{J}$?
+        Does $\mathcal{J}$ have a minimum?
+    \item
+        What is the variational first order condition for the minimum of $\mathcal{J}$?
     \item
         What is the differential equation satisfied by the minimum?
     \item
@@ -600,8 +677,9 @@
     \subsection{}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
-    The following is from a problem 
-    in the IMO 2011
+    The following is from
+    the IMO 2011,
+    a problem 
     by Geoffrey Smith (UK):
     %
     \begin{quote}
@@ -637,7 +715,7 @@
     for a fluid flowing
     through a round pipe
     reduce 
-    (under reasonable assumptions: steady, symmetric, laminar and fully developed flow)
+    (under reasonable assumptions of steady, symmetric, laminar and fully developed flow)
     to 
     \begin{align}
         \frac{1}{r}
@@ -652,9 +730,9 @@
     (independent of $r$),
     as functions of the radial coordinate $r$ and the axial coordinate $z$.
     %
-    We use SI units.
-    %
-    The constant $\mu$ is the dynamic viscosity of the fluid
+    We use SI units;
+    the constant $\mu$ is the dynamic viscosity [$\mathrm{Pa \times s}$]
+    of the fluid
 %     has the unit of [pressure $\times$ time]
     that expresses its resistance to flow.
     %
@@ -664,15 +742,16 @@
     
     \begin{itemize}
     \item  
-        Why are both sides equal to some constant $C$?
-        What is the physical meaning of this constant?
+        Why are both sides equal to some constant,
+        and
+        what is the physical meaning of this constant?
     \item
-        Assume the pressure drop across the pipe 
+        The pressure drop across the pipe 
         of length $L$ is $\Delta P < 0$.
-        What is the flow rate [volume / time]
-        of the fluid?
+        What is the flow rate [$\mathrm{m^3 / s}$]
+        of the fluid through the pipe?
     \item
-        Estimate the flow rate out of the water tap
+        Estimate the flow rate at the water tap
         and 
         thus the pressure at the source.
     \end{itemize}
@@ -681,10 +760,59 @@
     %
     
     
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    For each natural $N$,
+    let $( X_t^{(N)} )_{t \geq 0}$ be a family of random variables.
+    %
+    Define a second family by $Y_t^{(N)} := X_t^{(N)} / N$.
+    %
+    Set $y(t) := \lim_{N \to \infty} \mathbb{E}[Y_t^{(N)}]$,
+    assuming the limit exists.
+    %
+    Derive a differential equation for $y$ 
+    where the process $X_t^{(N)}$ is 
+    %
+    \begin{itemize}
+    \item 
+        the Poisson process with 
+        rate $\lambda > 0$;
+    \item
+        the queue with
+        Poisson arrivals at rate $N$ 
+        and
+        exponential service times of mean $1$.
+    \end{itemize}
+
     
     
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    
+    Let $J$ be the $n \times n$ matrix
+    \begin{align}
+        J :=
+        \lambda I + N
+        \quad\text{where}\quad
+        \lambda \in \mathbb{C}
+        \quad\text{and}\quad
+        N :=
+        \begin{pmatrix}
+            0 & 1      &        &   \\
+              & \ddots & \ddots &   \\
+              &        & 0      & 1
+        \end{pmatrix}
+        .
+    \end{align}
+    
+    Derive an expression for $\exp(t J)$, $t \in \mathbb{R}$.
+
 
 
     \vfill\hfill 
-    {\small\textcopyright} R.A., \today
+    {\small\textcopyright} R.A.
 \end{document}
