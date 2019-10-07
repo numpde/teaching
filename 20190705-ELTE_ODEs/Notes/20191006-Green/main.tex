@@ -31,7 +31,7 @@
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     
-    Let $I = (a, b)$ be a non-trivial interval.
+    Let $I = (a, b)$ be a non-trivial bounded interval.
     %
     An important class of differential equations
     (historically, theoretically, didactically and practically)
@@ -43,11 +43,11 @@
         %
         -(p u')' + q u = f
         \qquad\text{on}\qquad
-        (a, b)
+        I
     \end{align}
     %
     where 
-    $u \from (a, b) \to \IR$
+    $u \from I \to \IR$
     is the unknown function,
     while $p$, $q$ and $g$ are known, sufficiently smooth functions.
     %
@@ -78,10 +78,10 @@
         .
     \end{align}
     %
-    Thus, Eqn.~\ref{e:u} becomes
+    Thus, Eqn.~\eqref{e:u} becomes
     \begin{align}
         \label{e:Lu}
-        L u = g
+        L u = f
         .
     \end{align}
 
@@ -121,7 +121,7 @@
     %
     %
     The solution space is two-dimensional,
-    parameterized by the two constants $c_1, c_2 \geq 0$.
+    parameterized by the two constants $c_1, c_2 \in \IR$.
     %
     %
     To fully specify the solution,
@@ -155,7 +155,7 @@
     %
     
     The significance of the observation 
-    is seen by defining
+    is further seen by defining
     the bilinear form
     \begin{align}
         B(u, v) 
@@ -176,17 +176,19 @@
         ,
     \end{align}
     which says that $B$ is almost symmetric
-    but the last anti-symmetric term.
+    but for the last anti-symmetric term.
     %
     %
     However,
-    if we restrict $u$ and $v$ to functions
-    that vanish on the boundary of $I$,
-    the bilinear form is \emph{symmetric}.
+    if we restrict $u$ and $v$ 
+    to the \emph{vector space} of functions
+    that vanish on the boundary of $I$
+    (for example),
+    the bilinear form \emph{is} symmetric.
     %
     %
     This unleashes operator-theoretic tools
-    which form the basis of 
+    that form the basis of 
     the \emph{finite element method}
     for boundary value problems like \eqref{e:Lu}.
     
@@ -214,7 +216,7 @@
     
     %
     
-    In \emph{boundary value problems}
+    In \emph{boundary value problems}, 
     we specify conditions at both ends of the interval,
     called boundary conditions.
     %
@@ -242,9 +244,9 @@
     \begin{subequations}
         \label{e:H}
         \begin{align}
-            H_a u := \alpha_0 u(a) + \alpha_1 u'(a) \stackrel{!}{=} \eta_a
+            H_a u := \alpha_0 u(a) + \alpha_1 u'(a) & \stackrel{!}{=} \eta_a
             \\
-            H_b u := \beta_0 u(b) + \beta_1 u'(b) \stackrel{!}{=} \eta_b
+            H_b u := \beta_0 u(b) + \beta_1 u'(b) & \stackrel{!}{=} \eta_b
         \end{align}
     \end{subequations}
     where 
@@ -257,10 +259,9 @@
     %
     In more general boundary value problems
     posed on $d$-dimensional domains,
-    boundary operators
-    return functions on the $(d - 1)$-dimensional boundary 
-    of the domain;
-    these functions are called \emph{traces} of $u$.
+    the boundary operator
+    returns a function (called \emph{trace} of $u$) 
+    on the $(d - 1)$-dimensional boundary.
     %
     
     For the candidate solution in the form
@@ -370,7 +371,7 @@
     \begin{align}
         (L \tilde{u})(x) \stackrel{!}{=} -(L u_0)(x) = x
         \quad
-        \forall x \in (-1, 1),
+        \forall x \in (-1, 1)
         \quad\text{with}\quad
         \tilde{u}(\pm 1) = 0,
     \end{align}
@@ -393,7 +394,7 @@
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     We consider boundary value problems 
-    $L u = f$
+    $L u = f$ \eqref{e:Lu}
     on an interval $I$
     with homogeneous boundary conditions.
     %
@@ -439,7 +440,9 @@
     %
     
     The Green's function to the operator $L$ 
-    is a scalar-valued function $G$ of two variables
+    is a scalar-valued function 
+    $G \from I \times I \to \IR$
+    of two variables
     such that
     \begin{align}
         \label{e:G}
@@ -490,7 +493,7 @@
     %
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection*{Green's function for \eqref{e:Lu}}
+    \subsubsection*{Green's function for $L u = -(p u')' + q u$}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     For the one-dimensional problem \eqref{e:Lu}
@@ -503,20 +506,19 @@
     
     %
     
-    First note that
+    First, note that
     the Lagrange identity \eqref{e:LI}
-    implies that the quantity
+    implies that 
     \begin{align}
-        c := p (\varphi_1 \varphi_2' - \varphi_1' \varphi_2)
+        \label{e:c}
+        %
+        c := (\varphi_1 \varphi_2' - \varphi_1' \varphi_2) p
+        \quad
+        \text{is constant}.
     \end{align}
-    is a constant.
     %
     %
-    We assume that this constant in non-zero.
-    %
-    %
-    To simplify the notation
-    we rescale $\varphi_i$ so that $c = 1$.
+    We assume that this constant is non-zero.
 
     %
     
@@ -525,26 +527,26 @@
         G(x, y)
         :=
         \begin{cases}
-            \varphi_1(x) \varphi_2(y) & \text{if} \quad x \geq y
+            \frac1c \varphi_1(x) \varphi_2(y) & \text{if} \quad x \geq y
             \\
-            \varphi_1(y) \varphi_2(x) & \text{if} \quad y \geq x
+            \frac1c \varphi_1(y) \varphi_2(x) & \text{if} \quad y \geq x
             .
         \end{cases}
     \end{align}
     
     %
     
-    \emph{Remark}.
-    %
-    We can write $G$ using the Heaviside function as
-    \begin{align}
-        G(x, y)
-        =
-        \varphi_1(x) \varphi_2(y) H(x - y)
-        +
-        \varphi_1(y) \varphi_2(x) H(y - x)
-        .
-    \end{align}
+%     \emph{Remark}.
+%     %
+%     We can write $G$ using the Heaviside function as
+%     \begin{align}
+%         G(x, y)
+%         =
+%         \varphi_1(x) \varphi_2(y) H(x - y)
+%         +
+%         \varphi_1(y) \varphi_2(x) H(y - x)
+%         .
+%     \end{align}
 
     %
     
@@ -559,6 +561,9 @@
     \emph{Remark}.
     The function $x \mapsto G(x, y)$ is 
     continuous but likely not differentiable at $x = y$.
+    %
+    We write $G'$ to mean the derivative 
+    with respect to the first variable.
     
     %
     
@@ -569,16 +574,20 @@
     Specifically, we check that
     \begin{align}
         \label{e:?}
+        %
+        \lim_{\epsilon \searrow 0}
         \int_{y - \epsilon}^{y + \epsilon}
         L [G(\cdot, y)](x) dx
         =
         1
+        \qquad
+        \forall y \in I
+        .
     \end{align}
-    for any $y \in I$ as $\epsilon \searrow 0$.
     %
     %
-    Since $L [G(\cdot, y)](x) = 0$ whenever $x \neq y$,
-    this implies $L [G(\cdot, y)](x) = \delta(x - y)$,
+    Since the integrand is zero whenever $x \neq y$,
+    this implies that it equals $\delta(x - y)$,
     which is equivalent to \eqref{e:G}.
 
     Indeed,
@@ -599,18 +608,20 @@
         \\
         & =
         -
+        \frac1c
         (
-        p(y + \epsilon) \varphi_1'(y + \epsilon) \varphi_2(y)
-        -
-        p(y - \epsilon) \varphi_2'(y - \epsilon) \varphi_1(y)
+            p(y + \epsilon) \varphi_1'(y + \epsilon) \varphi_2(y)
+            -
+            p(y - \epsilon) \varphi_2'(y - \epsilon) \varphi_1(y)
         )
         \\
         & \to 
-        p (\varphi_1 \varphi_2' - \varphi_1' \varphi_2)(y)
+        \frac1c (\varphi_1 \varphi_2' - \varphi_1' \varphi_2)(y) p(y)
         \quad \text{as} \quad
         \epsilon \searrow 0
         \\
         & = 1
+        \quad \text{by} \quad \eqref{e:c}
         .
     \end{align}
 
@@ -619,6 +630,7 @@
     
     %
     
+    \emph{Example}. {\color{red} TODO: hat/tent} 
     
     \vfill\hfill 
     R.A., \today
