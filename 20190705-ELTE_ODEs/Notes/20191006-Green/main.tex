@@ -1,0 +1,625 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amssymb, amsmath}
+\usepackage{fullpage}
+\usepackage{parskip}
+\usepackage{url}
+\usepackage{color}
+\usepackage{enumitem}
+
+\newcommand{\from}{\colon}
+\newcommand{\IR}{\mathbb{R}}
+\newcommand{\IN}{\mathbb{N}}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+
+\begin{document}
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    Differential equations: boundary value problems
+    \hfill
+    ELTE, autumn 2019/20
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection*{Boundary value problems (DRAFT \today)}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsubsection*{Introduction}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    
+    Let $I = (a, b)$ be a non-trivial interval.
+    %
+    An important class of differential equations
+    (historically, theoretically, didactically and practically)
+    are
+    of the form
+    %
+    \begin{align}
+        \label{e:u}
+        %
+        -(p u')' + q u = f
+        \qquad\text{on}\qquad
+        (a, b)
+    \end{align}
+    %
+    where 
+    $u \from (a, b) \to \IR$
+    is the unknown function,
+    while $p$, $q$ and $g$ are known, sufficiently smooth functions.
+    %
+    Typically, 
+    \begin{align}
+        \label{e:p0}
+        \text{$p \geq 0$ is non-negative.}
+    \end{align}
+
+    %%
+    
+    \emph{Example}.
+    %
+    Consider $u'' + a_1 x' + a_0 x = g$.
+    %
+    Set $p(s) := \exp(\int_a^s a_1(\tau) d\tau)$
+    and $q := -p a_0$.
+    
+    
+    %%
+    
+    To streamline the notation we introduce 
+    the differential operator $L$,
+    \begin{align}
+        \label{e:L}
+        L u :=
+        -(p u')' + q u
+        .
+    \end{align}
+    %
+    Thus, Eqn.~\ref{e:u} becomes
+    \begin{align}
+        \label{e:Lu}
+        L u = g
+        .
+    \end{align}
+
+    
+    %%
+    
+    The equation \eqref{e:u} is linear in $u$ and involves two derivatives.
+    %
+    %
+    From the ODE theory we expect that
+    the homogeneous equation
+    \begin{align}
+        \label{e:L0}
+        L \varphi = 0
+    \end{align}
+    has two (linearly independent) solutions
+    $\varphi_1$ and $\varphi_2$,
+    forming a so-called fundamental system.
+    %
+    %
+    If, moreover, $\varphi_0$ is a particular solution
+    to the original non-homogeneous equation \eqref{e:Lu}
+    then so is any combination,
+    for any $c_1, c_2 \in \IR$,
+    \begin{align}
+        L(\varphi_0 + c_1 \varphi_1 + c_2 \varphi_2)
+        =
+        L \varphi_0
+        +
+        c_1 L \varphi_1
+        +
+        c_2 L \varphi_2
+        = 
+        g
+        .
+    \end{align}
+    %
+    %
+    The solution space is two-dimensional,
+    parameterized by the two constants $c_1, c_2 \geq 0$.
+    %
+    %
+    To fully specify the solution,
+    two additional constraints are needed.
+    
+    
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsubsection*{The operator $L$ is self-adjoint (almost)}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    The particular form of $L$ is significant 
+    for the following reason,
+    called ``Lagrange identity'' in a more general context.
+    
+    \emph{Observation}.
+    %
+    For any two smooth functions $u$ and $v$,
+    \begin{align}
+        \label{e:LI}
+        %
+        u L v - v L u
+        =
+        - u (p v')'
+        + v (p u')'
+        =
+        (p (u' v - u v'))'
+        .
+    \end{align}
+
+    %
+    
+    The significance of the observation 
+    is seen by defining
+    the bilinear form
+    \begin{align}
+        B(u, v) 
+        :=
+        \int_I (L u)(x) v(x) dx
+        .
+    \end{align}
+    %
+    %
+    Flipping $L$ onto $v$ using \eqref{e:LI}, 
+    we have the identity
+    \begin{align}
+        B(u, v)
+        =
+        B(v, u)
+        +
+        \int_I (p (u' v - u v'))' dx
+        ,
+    \end{align}
+    which says that $B$ is almost symmetric
+    but the last anti-symmetric term.
+    %
+    %
+    However,
+    if we restrict $u$ and $v$ to functions
+    that vanish on the boundary of $I$,
+    the bilinear form is \emph{symmetric}.
+    %
+    %
+    This unleashes operator-theoretic tools
+    which form the basis of 
+    the \emph{finite element method}
+    for boundary value problems like \eqref{e:Lu}.
+    
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsubsection*{Boundary conditions I}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    %
+    
+    In \emph{initial value problems},
+    we specify two conditions
+    on one end of the interval, 
+    such as
+    $
+        u(a) := u_0
+    $
+    and
+    $
+        u'(a) := u_1
+    $.
+    %
+    %
+    Such equations typically model oscillatory evolution over time.
+    
+    %
+    
+    In \emph{boundary value problems}
+    we specify conditions at both ends of the interval,
+    called boundary conditions.
+    %
+    For example,
+    \begin{align}
+        \text{homogeneous Dirichlet condition at $a$}:
+        & 
+        \qquad
+        D_a u := u(a) \stackrel{!}{=} 0
+        %
+        \\
+        %
+        \text{homogeneous Neumann condition at $b$}:
+        &
+        \qquad
+        N_b u := u'(b) \stackrel{!}{=} 0
+        .
+    \end{align}
+    
+    %
+    
+    More generally,
+    so-called
+    Robin boundary conditions can be imposed:
+    \begin{subequations}
+        \label{e:H}
+        \begin{align}
+            H_a u := \alpha_0 u(a) + \alpha_1 u'(a) \stackrel{!}{=} \eta_a
+            \\
+            H_b u := \beta_0 u(b) + \beta_1 u'(b) \stackrel{!}{=} \eta_b
+        \end{align}
+    \end{subequations}
+    where 
+    $\alpha_i$, $\beta_i$ and $\eta_x$ are constants.
+    %
+    Note that $H_a$ and $H_b$ are
+    \emph{linear operators}
+    that take a function 
+    and return a real number (if defined).
+    %
+    In more general boundary value problems
+    posed on $d$-dimensional domains,
+    boundary operators
+    return functions on the $(d - 1)$-dimensional boundary 
+    of the domain;
+    these functions are called \emph{traces} of $u$.
+    %
+    
+    For the candidate solution in the form
+    $u = \varphi_0 + c_1 \varphi_1 + c_2 \varphi_2$
+    we can write the set of 
+    boundary conditions in matrix-vector form,
+    %
+    \begin{align}
+        \begin{pmatrix}
+            H_a \varphi_1 & H_a \varphi_2
+            \\
+            H_b \varphi_1 & H_b \varphi_2
+        \end{pmatrix}
+        \begin{pmatrix}
+            c_1 \\ c_2
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            \eta_a \\ \eta_b
+        \end{pmatrix}
+        -
+        \begin{pmatrix}
+            H_a \varphi_0 \\ H_b \varphi_0
+        \end{pmatrix}
+        ,
+    \end{align}
+    %
+    providing conditions 
+    on the unknonwn coefficients $c_1$ and $c_2$.
+    %
+    %
+    If the determinant of the matrix is non-zero,
+    these coefficients are uniquely determined
+    (but otherwise there may be no solution, one solution or infinitely many solutions).
+    
+    %
+    
+    \emph{Example}.
+    %
+    Take 
+    $p := 1$ and $q := -(\pi k)^2$,
+    where $k \in \IN$,
+    and $g = 0$,
+    on the interval $(0, 1)$
+    subject to 
+    the homogeneous Dirichlet boundary conditions
+    $u(0) = 0$
+    and
+    $u(1) = 0$.
+    %
+    %
+    There is no need for the particular solution,
+    in other words $\varphi_0 = 0$.
+    %
+    Determine $c_1$ and $c_2$.
+    
+    %
+    
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsubsection*{Boundary conditions II}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    In practice,
+    that is in algorithms and software packages
+    for boundary value problems,
+    there are other ways to impose 
+    the (linear) boundary conditions \eqref{e:H}.
+    %
+    %
+    A relatively easy way is to 
+    decompose $u = \tilde{u} + u_0$
+    where
+    $u_0$ is
+    \emph{any} function that satisfies
+    the boundary conditions \eqref{e:H}.
+    %
+    %
+    Then,
+    setting 
+    $\tilde{f} := f - L u_0$,
+    the function $\tilde{u}$
+    satisfies
+    the non-homogeneous boundary value problem
+    \begin{align}
+        L \tilde{u} = \tilde{f}
+    \end{align}
+    with homogeneous boundary conditions
+    $H_{\cdot} \tilde{u} = 0$.
+    
+    %
+    
+    \emph{Example}.
+    %
+    On $I = (-1, 1)$,
+    take
+    \begin{align}
+        L u := -u'' + u = 0
+        \quad\text{with}\quad
+        u(\pm 1) = \pm 1
+        .
+    \end{align}
+    %
+    Then $u_0(x) := x$ satisfies the boundary conditions.
+    %
+    Therefore, if $\tilde{u}$ solves
+    \begin{align}
+        (L \tilde{u})(x) \stackrel{!}{=} -(L u_0)(x) = x
+        \quad
+        \forall x \in (-1, 1),
+        \quad\text{with}\quad
+        \tilde{u}(\pm 1) = 0,
+    \end{align}
+    then $u := \tilde{u} + u_0$ solves the original problem.
+    
+    %
+    
+    In this way,
+    we do not need 
+    the fundamental system $\{ \varphi_1, \varphi_2 \}$,
+    which is in general hard to find anyway.
+    %
+    %
+    In the following we therefore focus on 
+    homogeneous boundary conditions.
+    
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsubsection*{Green's function}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    We consider boundary value problems 
+    $L u = f$
+    on an interval $I$
+    with homogeneous boundary conditions.
+    %
+    %
+    The Green's function is largely a theoretical device
+    for representing solutions 
+    that is based on 
+    the following idea
+    (that also works in higher dimensions).
+    
+    %
+    
+    Let $\delta$ denote the Dirac functional at $0$
+    that formally verifies 
+    \begin{align}
+        \label{e:delta}
+        %
+        \int_I f(y) \delta(y - x) dy
+        =
+        f(x)
+        \quad
+    \end{align}
+    for all smooth functions $f$.
+    
+    %
+    
+    \emph{Example}.
+    %
+    Let $H$ be the Heaviside function
+    with $H(x) = 0$ for $x < 0$
+    and $H(x) = 1$ for $x > 0$.
+    %
+    Show that
+    \begin{align}
+        \int_{\IR} f(y) H'(y - x) dy
+        =
+        f(x)
+        \quad
+        \forall f \in C^1(\IR)
+        .
+    \end{align}
+    
+    %
+    
+    The Green's function to the operator $L$ 
+    is a scalar-valued function $G$ of two variables
+    such that
+    \begin{align}
+        \label{e:G}
+        %
+        L [ G(\cdot, y) ](x)
+        =
+        \delta(y - x)
+        %
+        \quad
+        \forall x \in I
+        ,
+    \end{align}
+    where we agree that $L$ acts on the first variable of $G$.
+    %
+    %
+    Now set
+    \begin{align}
+        \label{e:uG}
+        %
+        u(x) := \int_I G(x, y) f(y) dy
+        .
+    \end{align}
+    %
+    %
+    Then, bravely exchanging differentiation in $x$ and integration in $y$,
+    \begin{align}
+        (L u)(x)
+        \stackrel{\eqref{e:uG}}{=}
+        \int_I L[ G(\cdot, y) ](x) f(y) dy
+        \stackrel{\eqref{e:G}}{=}
+        \int_I \delta(y - x) f(y) dy
+        \stackrel{\eqref{e:delta}}{=}
+        f(x)
+        %
+        \quad
+        \forall x \in I
+        .
+    \end{align}
+
+    %
+    
+    \emph{Remark}.
+    %
+    If $x \mapsto G(x, y)$ satisfies
+    the homogeneous boundary conditions
+    then so does \eqref{e:uG}.
+    
+    %
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsubsection*{Green's function for \eqref{e:Lu}}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    For the one-dimensional problem \eqref{e:Lu}
+    with homogeneous boundary conditions
+    a Green's function can be constructed
+    from the fundamental system $\{ \varphi_1, \varphi_2 \}$.
+    %
+    %
+    Recall that this means in particular that $L \varphi_i = 0$.
+    
+    %
+    
+    First note that
+    the Lagrange identity \eqref{e:LI}
+    implies that the quantity
+    \begin{align}
+        c := p (\varphi_1 \varphi_2' - \varphi_1' \varphi_2)
+    \end{align}
+    is a constant.
+    %
+    %
+    We assume that this constant in non-zero.
+    %
+    %
+    To simplify the notation
+    we rescale $\varphi_i$ so that $c = 1$.
+
+    %
+    
+    Now set
+    \begin{align}
+        G(x, y)
+        :=
+        \begin{cases}
+            \varphi_1(x) \varphi_2(y) & \text{if} \quad x \geq y
+            \\
+            \varphi_1(y) \varphi_2(x) & \text{if} \quad y \geq x
+            .
+        \end{cases}
+    \end{align}
+    
+    %
+    
+    \emph{Remark}.
+    %
+    We can write $G$ using the Heaviside function as
+    \begin{align}
+        G(x, y)
+        =
+        \varphi_1(x) \varphi_2(y) H(x - y)
+        +
+        \varphi_1(y) \varphi_2(x) H(y - x)
+        .
+    \end{align}
+
+    %
+    
+    \emph{Remark}.
+    The function $u$ defined by \eqref{e:uG}
+    satisfies the \emph{homogeneous} boundary conditions
+    because
+    $G(\cdot, y)$ does (for any $y \in I$).
+    
+    %
+    
+    \emph{Remark}.
+    The function $x \mapsto G(x, y)$ is 
+    continuous but likely not differentiable at $x = y$.
+    
+    %
+    
+    Now we verify that $G$ is indeed a Green's function 
+    for $L$ by checking \eqref{e:G}.
+    %
+    %
+    Specifically, we check that
+    \begin{align}
+        \label{e:?}
+        \int_{y - \epsilon}^{y + \epsilon}
+        L [G(\cdot, y)](x) dx
+        =
+        1
+    \end{align}
+    for any $y \in I$ as $\epsilon \searrow 0$.
+    %
+    %
+    Since $L [G(\cdot, y)](x) = 0$ whenever $x \neq y$,
+    this implies $L [G(\cdot, y)](x) = \delta(x - y)$,
+    which is equivalent to \eqref{e:G}.
+
+    Indeed,
+    using the Lagrange identity \eqref{e:LI}
+    with $u = G(\cdot, y)$ and $v = 1$,
+    \begin{align}
+        \text{LHS}\eqref{e:?}
+        & =
+        -
+        \int_{y - \epsilon}^{y + \epsilon}
+        (p G'(\cdot, y))'(x) 
+        dx
+        \\
+        & =
+        \left.
+        - p G'(x, y)
+        \right|_{x = y - \epsilon}^{x = y + \epsilon}
+        \\
+        & =
+        -
+        (
+        p(y + \epsilon) \varphi_1'(y + \epsilon) \varphi_2(y)
+        -
+        p(y - \epsilon) \varphi_2'(y - \epsilon) \varphi_1(y)
+        )
+        \\
+        & \to 
+        p (\varphi_1 \varphi_2' - \varphi_1' \varphi_2)(y)
+        \quad \text{as} \quad
+        \epsilon \searrow 0
+        \\
+        & = 1
+        .
+    \end{align}
+
+    \emph{Remark}.
+    We assumed that $p$ and $\varphi_i'$ are continuous.
+    
+    %
+    
+    
+    \vfill\hfill 
+    R.A., \today
+\end{document}
