@@ -6,9 +6,10 @@
 \usepackage{fullpage}
 \usepackage{parskip}
 \usepackage{url}
-\usepackage{color}
+\usepackage[dvipsnames]{xcolor}
 \usepackage{enumitem}
 
+\renewcommand{\vec}[1]{\mathbf{#1}}
 \newcommand{\from}{\colon}
 \newcommand{\IR}{\mathbb{R}}
 \newcommand{\IN}{\mathbb{N}}
@@ -529,7 +530,7 @@
         \begin{cases}
             \frac1c \varphi_1(x) \varphi_2(y) & \text{if} \quad x \geq y
             \\
-            \frac1c \varphi_1(y) \varphi_2(x) & \text{if} \quad y \geq x
+            \frac1c \varphi_2(x) \varphi_1(y) & \text{if} \quad x \leq y
             .
         \end{cases}
     \end{align}
@@ -575,11 +576,12 @@
     \begin{align}
         \label{e:?}
         %
-        \lim_{\epsilon \searrow 0}
-        \int_{y - \epsilon}^{y + \epsilon}
+        \int_{y - \varepsilon}^{y + \varepsilon}
         L [G(\cdot, y)](x) dx
-        =
+        \to
         1
+        \quad \text{as} \quad
+        \varepsilon \searrow 0
         \qquad
         \forall y \in I
         .
@@ -590,44 +592,67 @@
     this implies that it equals $\delta(x - y)$,
     which is equivalent to \eqref{e:G}.
 
-    Indeed,
-    using the Lagrange identity \eqref{e:LI}
-    with $u = G(\cdot, y)$ and $v = 1$,
+    %
+    
+    \newcommand{\x}{{\color{Brown}x}}
+    \newcommand{\y}{{y}}
+    
+    We assume that $\varphi_i$, $\varphi_i'$ and $p$ are continuous.
+    %
+    %
+    Fix $\y \in I$.
+    %
+    Now, for $\varepsilon > 0$ small,
     \begin{align}
         \text{LHS}\eqref{e:?}
         & =
-        -
-        \int_{y - \epsilon}^{y + \epsilon}
-        (p G'(\cdot, y))'(x) 
-        dx
+            \int_{\y - \varepsilon}^{\y + \varepsilon}
+            \left\{
+                -(p G'(\cdot, \y))'(\x) 
+                +
+                q(\x) G(\x, \y)
+            \right\}
+            d\x
         \\
         & =
-        \left.
-        - p G'(x, y)
-        \right|_{x = y - \epsilon}^{x = y + \epsilon}
+            \int_{\y + \varepsilon}^{\y - \varepsilon}
+            (p G'(\cdot, \y))'(\x) 
+            d\x
+            +
+            \mathcal{O}(\varepsilon)
         \\
         & =
-        -
-        \frac1c
-        (
-            p(y + \epsilon) \varphi_1'(y + \epsilon) \varphi_2(y)
-            -
-            p(y - \epsilon) \varphi_2'(y - \epsilon) \varphi_1(y)
-        )
+            \left.
+            p G'(\x, \y)
+            \right|_{\x = \y + \varepsilon}^{\x = \y - \varepsilon}
+            +
+            \mathcal{O}(\varepsilon)
+        \\
+        & =
+            \frac1c
+            (
+                p(\y - \varepsilon) \varphi_2'(\y - \varepsilon) \varphi_1(\y)
+                -
+                p(\y + \varepsilon) \varphi_1'(\y + \varepsilon) \varphi_2(\y)
+            )
+            +
+            \mathcal{O}(\varepsilon)
         \\
         & \to 
-        \frac1c (\varphi_1 \varphi_2' - \varphi_1' \varphi_2)(y) p(y)
-        \quad \text{as} \quad
-        \epsilon \searrow 0
+            \frac1c 
+            p(\y)
+            (\varphi_2' \varphi_1 - \varphi_1' \varphi_2)(\y) 
+            \quad \text{as} \quad
+            \varepsilon \searrow 0
         \\
-        & = 1
-        \quad \text{by} \quad \eqref{e:c}
+        & = 
+            1
+            \quad \text{by} \quad \eqref{e:c}
         .
     \end{align}
-
-    \emph{Remark}.
-    We assumed that $p$ and $\varphi_i'$ are continuous.
-    
+  
+  
+     
     %
     
     \emph{Example}. {\color{red} TODO: hat/tent} 
