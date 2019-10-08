@@ -50,7 +50,7 @@
     where 
     $u \from I \to \IR$
     is the unknown function,
-    while $p$, $q$ and $g$ are known, sufficiently smooth functions.
+    while $p$, $q$ and $f$ are known, sufficiently smooth functions.
     %
     Typically, 
     \begin{align}
@@ -94,10 +94,7 @@
     %
     From the ODE theory we expect that
     the homogeneous equation
-    \begin{align}
-        \label{e:L0}
-        L \varphi = 0
-    \end{align}
+    $L \varphi = 0$
     has two (linearly independent) solutions
     $\varphi_1$ and $\varphi_2$,
     forming a so-called fundamental system.
@@ -106,7 +103,6 @@
     If, moreover, $\varphi_0$ is a particular solution
     to the original non-homogeneous equation \eqref{e:Lu}
     then so is any combination,
-    for any $c_1, c_2 \in \IR$,
     \begin{align}
         L(\varphi_0 + c_1 \varphi_1 + c_2 \varphi_2)
         =
@@ -117,12 +113,14 @@
         c_2 L \varphi_2
         = 
         g
+        \qquad
+        \forall c_1, c_2 \in \IR
         .
     \end{align}
     %
     %
     The solution space is two-dimensional,
-    parameterized by the two constants $c_1, c_2 \in \IR$.
+    parameterized by the two constants $c_1$ and $c_2$.
     %
     %
     To fully specify the solution,
@@ -213,7 +211,7 @@
     $.
     %
     %
-    Such equations typically model oscillatory evolution over time.
+    Such equations typically model evolution over time.
     
     %
     
@@ -222,7 +220,7 @@
     called boundary conditions.
     %
     For example,
-    \begin{align}
+    \begin{subequations}\begin{align}
         \text{homogeneous Dirichlet condition at $a$}:
         & 
         \qquad
@@ -235,7 +233,7 @@
         \qquad
         N_b u := u'(b) \stackrel{!}{=} 0
         .
-    \end{align}
+    \end{align}\end{subequations}
     
     %
     
@@ -317,7 +315,7 @@
     There is no need for the particular solution,
     in other words $\varphi_0 = 0$.
     %
-    Determine $c_1$ and $c_2$.
+    Determine the solution.
     
     %
     
@@ -345,13 +343,16 @@
     setting 
     $\tilde{f} := f - L u_0$,
     the function $\tilde{u}$
-    satisfies
+    satisties
+    the \emph{homogeneous} boundary conditions
+    $H_{\cdot} \tilde{u} = 0$
+    and
+    solves
     the non-homogeneous boundary value problem
     \begin{align}
         L \tilde{u} = \tilde{f}
+        .
     \end{align}
-    with homogeneous boundary conditions
-    $H_{\cdot} \tilde{u} = 0$.
     
     %
     
@@ -360,7 +361,7 @@
     On $I = (-1, 1)$,
     take
     \begin{align}
-        L u := -u'' + u = 0
+        L u := -u'' + u = 0,
         \quad\text{with}\quad
         u(\pm 1) = \pm 1
         .
@@ -370,9 +371,9 @@
     %
     Therefore, if $\tilde{u}$ solves
     \begin{align}
-        (L \tilde{u})(x) \stackrel{!}{=} -(L u_0)(x) = x
+        (L \tilde{u})(x) \stackrel{!}{=} -(L u_0)(x) = -x
         \quad
-        \forall x \in (-1, 1)
+        \forall x \in (-1, 1),
         \quad\text{with}\quad
         \tilde{u}(\pm 1) = 0,
     \end{align}
@@ -400,33 +401,38 @@
     with homogeneous boundary conditions.
     %
     %
-    The Green's function is largely a theoretical device
+    The Green's function is a device
     for representing solutions 
-    that is based on 
-    the following idea
-    (that also works in higher dimensions).
+    as a superposition
+    of
+    the system responses to localized impulses.
+    %
+    This also works for 
+    linear evolution and boundary value problems 
+    in higher dimensions.
+    %
+    It is frequently used in some applications
+    such as electromagnetics and control systems.
     
     %
     
     Let $\delta$ denote the Dirac functional at $0$
-    that formally verifies 
+    that formally verifies, for all smooth $f$, 
     \begin{align}
         \label{e:delta}
         %
         \int_I f(y) \delta(y - x) dy
         =
         f(x)
-        \quad
+        .
     \end{align}
-    for all smooth functions $f$.
     
     %
     
     \emph{Example}.
     %
-    Let $H$ be the Heaviside function
-    with $H(x) = 0$ for $x < 0$
-    and $H(x) = 1$ for $x > 0$.
+    Let $H$ be the Heaviside function,
+    $H(x) = 1_{x > 0}$.
     %
     Show that
     \begin{align}
@@ -497,17 +503,16 @@
     \subsubsection*{Green's function for $L u = -(p u')' + q u$}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
-    For the one-dimensional problem \eqref{e:Lu}
+    For the 1d problem \eqref{e:Lu}
     with homogeneous boundary conditions
     a Green's function can be constructed
     from the fundamental system $\{ \varphi_1, \varphi_2 \}$.
-    %
-    %
-    Recall that this means in particular that $L \varphi_i = 0$.
     
     %
     
-    First, note that
+    Recall that $L \varphi_i = 0$.
+    %
+    Therefore
     the Lagrange identity \eqref{e:LI}
     implies that 
     \begin{align}
@@ -518,11 +523,9 @@
         \text{is constant}.
     \end{align}
     %
-    %
-    We assume that this constant is non-zero.
-
-    %
     
+    We assume that this constant is non-zero.
+    %
     Now set
     \begin{align}
         G(x, y)
@@ -534,37 +537,14 @@
             .
         \end{cases}
     \end{align}
-    
+        
+    We write $G'$ for the derivative 
+    w.r.t.~the first variable,
+    which may not exist at $x = y$.
     %
-    
-%     \emph{Remark}.
-%     %
-%     We can write $G$ using the Heaviside function as
-%     \begin{align}
-%         G(x, y)
-%         =
-%         \varphi_1(x) \varphi_2(y) H(x - y)
-%         +
-%         \varphi_1(y) \varphi_2(x) H(y - x)
-%         .
-%     \end{align}
-
-    %
-    
-    \emph{Remark}.
-    The function $u$ defined by \eqref{e:uG}
-    satisfies the \emph{homogeneous} boundary conditions
-    because
-    $G(\cdot, y)$ does (for any $y \in I$).
-    
-    %
-    
-    \emph{Remark}.
-    The function $x \mapsto G(x, y)$ is 
-    continuous but likely not differentiable at $x = y$.
-    %
-    We write $G'$ to mean the derivative 
-    with respect to the first variable.
+    Note that
+    $G(\cdot, y)$ and therefore $u = \eqref{e:uG}$
+    satisfy the homogeneous boundary conditions.
     
     %
     
@@ -572,7 +552,7 @@
     for $L$ by checking \eqref{e:G}.
     %
     %
-    Specifically, we check that
+    Specifically, 
     \begin{align}
         \label{e:?}
         %
@@ -588,9 +568,9 @@
     \end{align}
     %
     %
-    Since the integrand is zero whenever $x \neq y$,
+    Since the integrand is zero for $x \neq y$,
     this implies that it equals $\delta(x - y)$,
-    which is equivalent to \eqref{e:G}.
+    as in \eqref{e:G}.
 
     %
     
@@ -603,7 +583,7 @@
     Fix $\y \in I$.
     %
     Now, for $\varepsilon > 0$ small,
-    \begin{align}
+    \begin{subequations}\begin{align}
         \text{LHS}\eqref{e:?}
         & =
             \int_{\y - \varepsilon}^{\y + \varepsilon}
@@ -637,20 +617,19 @@
             )
             +
             \mathcal{O}(\varepsilon)
-        \\
-        & \to 
-            \frac1c 
-            p(\y)
-            (\varphi_2' \varphi_1 - \varphi_1' \varphi_2)(\y) 
-            \quad \text{as} \quad
-            \varepsilon \searrow 0
-        \\
-        & = 
-            1
-            \quad \text{by} \quad \eqref{e:c}
-        .
-    \end{align}
-  
+    \end{align}\end{subequations}
+    
+    %
+    
+    The last expression goes to 
+    $
+        \frac1c 
+        p(\y)
+        (\varphi_2' \varphi_1 - \varphi_1' \varphi_2)(\y) 
+    $
+    as
+    $\varepsilon \searrow 0$,
+    which equals 1 by \eqref{e:c}.
   
      
     %
