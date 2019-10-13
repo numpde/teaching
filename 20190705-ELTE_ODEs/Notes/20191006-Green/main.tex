@@ -24,7 +24,7 @@
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection*{Boundary value problems (DRAFT \today)}
+    \subsection*{Boundary value problems}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -147,10 +147,10 @@
         - u (p v')'
         + v (p u')'
         =
-        (p (u' v - u v'))'
+        ((u' v - u v') p)'
         .
     \end{align}
-
+    
     %
     
     The significance of the observation 
@@ -171,7 +171,7 @@
         =
         B(v, u)
         +
-        \int_I (p (u' v - u v'))' dx
+        \int_I ((u' v - u v') p)' dx
         ,
     \end{align}
     which says that $B$ is almost symmetric
@@ -503,7 +503,7 @@
     \subsubsection*{Green's function for $L u = -(p u')' + q u$}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
-    For the 1d problem \eqref{e:Lu}
+    For the one-dimensional problem \eqref{e:Lu}
     with homogeneous boundary conditions
     a Green's function can be constructed
     from the fundamental system $\{ \varphi_1, \varphi_2 \}$.
@@ -634,7 +634,9 @@
      
     %
     
-    \emph{Example}. {\color{red} TODO: hat/tent} 
+    \emph{Exercise}. 
+    Sketch $G$ for $L u = -u''$ with hom.~Dirichlet boundary conditions
+    on $I = (-1, 1)$.
     
     \vfill\hfill 
     R.A., \today
