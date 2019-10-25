@@ -6,7 +6,7 @@ function main
   % Solve x' = F(x)
   function [R] = F(x)
     R = [log(1 - x(2)), log(x(1))];
-  endfunction
+  end
   
   % Default timestep size
   dt = 1e-2;
@@ -34,8 +34,8 @@ function main
     for n = (2 : length(tt))
       dt = tt(n) - tt(n - 1);
       xx(n, :) = xx(n - 1, :) + dt * F(tt(n - 1), xx(n - 1, :));
-    endfor
-  endfunction
+    end
+  end
   
   % Implicit Euler
   function [tt, xx] = IE(F, J, x0)
