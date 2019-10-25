@@ -54,7 +54,8 @@ function main
     hh(1) = plot(xx(:, 1), xx(:, 2), '-');
     hh(2) = plot(xx(0 == tt, 1), xx(0 == tt, 2), 'bx', 'MarkerSize', 10, 'LineWidth', 2);
     hh(3) = plot(xx(T == tt, 1), xx(T == tt, 2), 'ro', 'MarkerSize', 10, 'LineWidth', 2);
-    
+    xlabel('x_1');
+    ylabel('x_2'); 
     axis('square');
     legend(hh(2:3), strcat('t = ', num2str(0)), strcat('t = ', num2str(T)));
     pause(0.1);
@@ -63,19 +64,20 @@ function main
   % Implicit solver
   [tt, xx] = IE(@(t, x)(F(x)), J, x0);
   % Plot solution
-  ax2 = subplot(1, 2, 1);
+  ax1 = subplot(1, 2, 1);
   title('Implicit Euler');
   plot_trajectory(tt, xx);
   
   % Explicit solver
   [tt, xx] = EE(@(t, x)(F(x)), J, x0);
   % Plot solution
-  ax1 = subplot(1, 2, 2);
+  ax2 = subplot(1, 2, 2);
   title('Explicit Euler');
   plot_trajectory(tt, xx);
   
   % Sync axes
-  linkaxes([ax1, ax2]);
+  linkaxes([ax2, ax1]);
   
+  % Save figure
   saveas(gcf, "IE-EE.png");
 end
