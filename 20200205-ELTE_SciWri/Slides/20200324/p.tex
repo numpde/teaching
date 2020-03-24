@@ -1,0 +1,1055 @@
+\documentclass[onepage, 12pt]{beamer}
+\mode<presentation>{
+	\setbeamercovered{transparent}
+	%\beamertemplatenavigationsymbolsempty
+	\setbeamertemplate{footline}[frame number]
+% 	\usefonttheme{professionalfonts}
+}
+
+
+% % https://tex.stackexchange.com/questions/446063/change-background-colour-to-black-and-text-to-white
+% \usecolortheme{owl}
+
+% https://tex.stackexchange.com/questions/34166/understanding-minipages-aligning-at-top
+\usepackage{adjustbox}
+
+% https://tex.stackexchange.com/questions/124256/how-do-i-get-numbered-entries-in-a-beamer-bibliography
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+
+% https://tex.stackexchange.com/questions/49048/how-to-cite-one-bibentry-in-full-length-in-the-body-text
+\usepackage{bibentry}
+\bibliographystyle{plain}
+\nobibliography*
+%
+% https://tex.stackexchange.com/questions/163827/wrong-vertical-spaces-using-bibentry-within-beamer/163842
+\def\mybeamernewblock{%
+  \usebeamercolor[fg]{bibliography entry author}%
+  \usebeamerfont{bibliography entry author}%
+  \usebeamertemplate{bibliography entry author}%
+  \def\newblock{%
+    \usebeamercolor[fg]{bibliography entry title}%
+    \usebeamerfont{bibliography entry title}%
+    \usebeamertemplate{bibliography entry title}%
+    \def\newblock{%
+      \usebeamercolor[fg]{bibliography entry location}%
+      \usebeamerfont{bibliography entry location}%
+      \usebeamertemplate{bibliography entry location}%
+      \def\newblock{%
+        \usebeamercolor[fg]{bibliography entry note}%
+        \usebeamerfont{bibliography entry note}%
+        \usebeamertemplate{bibliography entry note}}}}%
+  \leavevmode
+}
+\newenvironment{references}{\begin{itemize}\let\newblock\mybeamernewblock}{\end{itemize}}
+
+
+\setbeamersize{text margin left=10pt, text margin right=10pt}
+\setbeamertemplate{itemize items}[circle]
+
+\beamertemplatenavigationsymbolsempty
+
+% http://tex.stackexchange.com/questions/8680/how-can-i-insert-a-newline-in-a-framebox
+%\usepackage{minibox}
+%\usepackage{framed}
+%\usepackage[usestackEOL]{stackengine}
+
+% https://tex.stackexchange.com/questions/433450/how-to-frame-any-environment-like-minipage-and-others
+\usepackage{framed}
+
+% % https://tex.stackexchange.com/questions/91124/itemize-removing-natural-indent
+% \usepackage{enumitem}
+
+% % http://tex.stackexchange.com/questions/167000/annotating-tables-with-tikz-adding-arrows
+% \usepackage{color, colortbl}
+\usepackage{tikz}
+\tikzstyle{every picture}+=[remember picture]
+%\usetikzlibrary{tikzmark, positioning, fit, shapes.misc}
+
+%% http://tex.stackexchange.com/questions/91124/itemize-removing-natural-indent
+%\usepackage{enumitem}
+
+%% http://tex.stackexchange.com/questions/41408/a-five-level-deep-list
+%\usepackage{enumitem}
+%\setlistdepth{9}
+
+% https://tex.stackexchange.com/questions/20792/how-to-superimpose-latex-on-a-picture
+\usepackage{overpic}
+
+% % http://tex.stackexchange.com/questions/32661/how-to-locate-figures-with-x-y-specified-location-in-a-presentation
+% \usepackage[absolute,overlay]{textpos} % absolute positioning of stuff
+% \setlength{\TPHorizModule}{1mm}
+% \setlength{\TPVertModule}{1mm}
+
+\usepackage{graphicx}
+\graphicspath{{../img/}}
+\AtBeginDocument{\DeclareGraphicsExtensions{.eps, .png, .gif, .pdf, .jpg}}
+
+\usepackage[makeroom]{cancel}
+
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+
+% \usepackage{amssymb}
+% \usepackage{nicefrac}
+% \usepackage{bbm}
+% \usepackage{esint}
+% \usepackage{sidecap}
+
+\usepackage{hyperref}
+% \hypersetup{pdfpagemode=FullScreen}
+
+\newcommand{\HIDE}[1]{}
+
+\newcommand{\skipline}{{\ }\\}
+
+\author{RA}
+\subject{Talks}
+
+\newcommand{\CITE}[1]{{\footnotesize[#1]}}
+
+% \input{definitions}
+
+\providecommand{\DIV}{\mathop{\text{div}}}
+\providecommand{\GRAD}{\mathop{\text{grad}}}
+
+\providecommand{\IE}{\mathbb{E}}
+\providecommand{\IP}{\mathbb{P}}
+\providecommand{\IR}{\mathbb{R}}
+\providecommand{\IZ}{\mathbb{Z}}
+
+\providecommand{\duality}[2]{\langle #1 \rangle_{#2}}
+\providecommand{\norm}[2]{\| #1 \|_{#2}}
+\providecommand{\seminorm}[2]{| #1 |_{#2}}
+\providecommand{\VERT}{\ensuremath{| \! | \! |}}
+\newcommand{\tnorm}[2]{\VERT{#1}\VERT_{{#2}}}
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+
+\providecommand{\Abf}{\mathbf{A}}
+\providecommand{\Bbf}{\mathbf{B}}
+\providecommand{\Dbf}{\mathbf{D}}
+\providecommand{\Ibf}{\mathbf{I}}
+\providecommand{\Jbf}{\mathbf{J}}
+\providecommand{\Fbf}{\mathbf{F}}
+\providecommand{\Hbf}{\mathbf{H}}
+\providecommand{\Mbf}{\mathbf{M}}
+\providecommand{\Tbf}{\mathbf{T}}
+\providecommand{\Pbf}{\mathbf{P}}
+\providecommand{\Vbf}{\mathbf{V}}
+\providecommand{\pbf}{\mathbf{p}}
+\providecommand{\ubf}{\mathbf{u}}
+\providecommand{\vbf}{\mathbf{v}}
+\providecommand{\wbf}{\mathbf{w}}
+\providecommand{\ybf}{\mathbf{y}}
+\providecommand{\zbf}{\mathbf{z}}
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+\newcommand{\from}{\colon}
+
+\providecommand{\T}{\mathsf{T}}
+
+\renewcommand{\hat}[1]{\widehat{#1}}
+\renewcommand{\tilde}[1]{\widetilde{#1}}
+
+\newcommand{\rd}{\,\mathrm{d}}
+
+\newcommand{\TEXT}[1]{\quad\text{#1}\quad}
+
+% http://tex.stackexchange.com/questions/211518/beamer-vfill-and-itemize
+\def\Bottom#1{\vskip 0pt plus 1filll #1}
+\def\BottomRight#1{\Bottom{\hfill #1}}
+
+% CODE LISTING
+\usepackage{color}
+\definecolor{DarkBlue}{rgb}{0,0,0.4}
+\definecolor{DarkRed}{rgb}{0.3,0,0}
+\definecolor{DarkGreen}{rgb}{0,0.3,0}
+\usepackage{listings}
+\lstset{%
+	language=Python,
+	basicstyle=\bf\ttfamily\footnotesize,
+	keywordstyle=\color{DarkBlue},
+	numbers=left, numberstyle=\footnotesize, numbersep=4pt,
+	commentstyle={\color{DarkGreen}},
+% 	backgroundcolor=\color{white},
+	showspaces=false, showstringspaces=false, showtabs=false,
+	frame=none,
+	tabsize=4,
+	breaklines=true, breakatwhitespace=false,
+	emphstyle={[1]\color{blue}},
+	emphstyle={[2]\color{DarkGreen}},
+	%morekeywords={parfor,true,false},
+	xleftmargin=8pt,
+	numbers=none
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{ifthen}
+
+\newcommand{\REDBOX}[1]{
+	\setlength{\fboxrule}{1pt}
+	\fcolorbox{red}{SeeMeBarely}{$\displaystyle
+		#1
+	$}
+}
+
+\definecolor{SeeMeBarely}{RGB}{230,230,230}
+\definecolor{Purple}{RGB}{128,0,128}
+\definecolor{DeepPurple}{RGB}{32,0,96}
+\newcommand{\ra}[1]{{\color{blue}{#1}}}
+\newcommand{\cred}[1]{{\color{red}{#1}}}
+\newcommand{\cblu}[1]{{\color{blue}{#1}}}
+\newcommand{\cpur}[1]{{\color{Purple}{#1}}}
+
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+\newcommand{\ItemComment}[1]{\hfill{\scriptsize(#1)\normalsize}}
+
+
+% http://www.webnots.com/vibgyor-rainbow-color-codes/
+\definecolor{a}{RGB}{148, 0, 211}
+\definecolor{b}{RGB}{75, 0, 130}
+\definecolor{c}{RGB}{0, 0, 255}
+\definecolor{d}{RGB}{0, 160, 0}
+\definecolor{e}{RGB}{200, 200, 0}
+\definecolor{f}{RGB}{255, 127, 0}
+\definecolor{g}{RGB}{255, 0, 0}
+%
+\definecolor{z}{RGB}{0, 0, 0}
+\definecolor{w}{RGB}{255, 255, 255}
+
+% % http://tex.stackexchange.com/questions/17611/how-does-one-type-chinese-in-latex
+% \usepackage{CJKutf8}
+% \AtBeginDvi{\input{zhwinfonts}}
+% %
+% \newcommand{\REN}{\begin{CJK*}{UTF8}{gbsn}人\end{CJK*}}
+% \newcommand{\ren}[1]{{\color{#1}\REN}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}[plain,t]
+	\begin{center}
+        \vspace{1cm}
+		%\small
+		%
+		Scientific writing
+		\\
+		{\small\color{gray} Session III: common writing mistakes}
+		%
+% 		\\[1\baselineskip]
+% 		\small
+% 		RA
+% 		\\[1\baselineskip]
+% 		\footnotesize
+% 		\EMAIL
+
+		\vspace{1cm}
+		%
+
+	\end{center}
+	
+	
+	\Bottom{
+		\scriptsize
+		R.A.
+		\hfill
+		ELTE, Mar 24, 2020
+		\\ {\ }
+	}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\begin{frame}[t]{Top twenty errors in undergraduate writing}{Hume center for writing and speaking, Standford (sample)}
+	 
+	\begin{enumerate}
+	\item<1->
+		Wrong word
+		
+		\only<1>{
+			\begin{quote}
+				Did you catch my illusion to the Bible?
+			\end{quote}
+		}
+		
+	\item<2->
+		Missing comma after an introductory element
+		
+		\only<2>{
+			\begin{quote}
+				Determined to make their flight on time they rose at dawn.
+			\end{quote}
+		}
+	
+	\item<3->
+		\textbf{Incomplete or missing documentation (sources)}
+		
+		\only<3>{
+			\begin{quote}
+				According to one source, it costs almost twice an employee's salary to recruit and train a replacement. 
+			\end{quote}
+		}
+	
+	\item<4->
+		Vague pronoun reference
+		
+		\only<4>{
+			\begin{quote}
+				The authoritarian school changed its cell phone policy, which many students resisted.
+			\end{quote}
+		}
+
+	\item<5->
+		\textbf{Spelling}
+		
+		\only<5>{
+			\begin{quote}
+				Why entertain hypographical errors?
+			\end{quote}
+		}
+		
+	\item<6->
+		Mechanical error with a quotation
+		
+		\only<6>{
+			\begin{quote}
+				``One typo is OK,'' he argued.
+			\end{quote}
+
+		}
+	
+	\item<7->
+		Unnecessary comma
+		
+		\only<7>{
+			\begin{quote}
+				Many children, of working parents, walk home from school by themselves.
+			\end{quote}
+		}
+	
+	\item<8->
+		Unnecessary or missing capitalization
+		
+		\only<8>{
+			\begin{quote}
+				Financial Aid is a pressing concern for many University Students.
+			\end{quote}
+		}
+	
+	\item<9->
+		\textbf{Missing word}
+		
+		\only<9>{
+			\begin{quote}
+				How to detect a missing word?
+			\end{quote}
+		}
+	
+	\item<10->
+		Faulty sentence structure
+		
+		{\only<10>{}}
+		
+		etc.
+	\end{enumerate}
+	
+	\vspace{-10cm}
+\end{frame}
+
+
+\begin{frame}[t]{English language errors in academic writing}{AJE scholar}
+	\begin{enumerate}
+	\item
+		Incrorrect article usage
+	
+	\item
+		Use of the same word/phrase repeatedly
+	
+	\item
+		Incorrect construction of questions
+	
+	\item
+		\textbf{Incorrect pluralization}
+		
+		\begin{itemize}
+		\item 
+			equipment, information
+		\item
+			research, literature
+		\end{itemize}
+		
+		\begin{itemize}
+		\item 
+			bacteria, phenomena
+		\item
+			data
+		\item
+			virus, index, axis
+		\end{itemize}
+
+		\begin{itemize}
+		\item
+			grammar rears its ugly head
+		\end{itemize}
+
+		{\scriptsize
+			See also: Project Nayuki, Problems with plurals in English
+			[\href{http://archive.ph/fnH0R}{http://archive.ph/fnH0R}].
+		}
+	\end{enumerate}
+
+\end{frame}
+
+
+\begin{frame}[t]{Longman dictionary of common errors}{Turton \& Heaton, Longman 2003}
+	\begin{itemize}
+	\item<1-> 
+		above
+	
+		\only<1>{
+			\begin{itemize}
+			\item
+				There were above a hundred people in the crowd.
+			\item
+				What do you think of the above suggestion?
+			\item
+				Taking all of the above into account, ....
+			\end{itemize}
+		}
+	
+	\item<2->
+		accomplish
+		
+		\only<2>{
+			\begin{itemize}
+			\item
+				To accomplish word unity, we need peace.
+			\end{itemize}
+		}
+	
+	\item<3->
+		account
+		
+		\only<3>{
+			\begin{itemize}
+			\item
+				Remember to take into account that
+				the schools are closed.
+			\item
+				Remember to account for the fact that
+				the schools are closed.
+			\end{itemize}
+		}
+	
+	
+	\item<4->
+		actual
+		
+		\only<4>{
+			\begin{itemize}
+			\item
+				We'd like to understand the actual crisis better.
+			\item
+				My actual job involves math. 
+			\end{itemize}
+		}
+	
+	\item<5->
+		actually
+		
+		\only<5>{
+			\begin{itemize}
+			\item
+				I love this movie.
+				Actually, I know it by heart.
+			\item
+				You should work harder than (you do) actually.
+			\end{itemize}
+		}
+	
+	\item<6->
+		advantage
+		
+		\only<6>{
+			\begin{itemize}
+			\item
+				Although this paper has its advantages,
+				it has a serious flaw.
+			\item
+				Sports provides many advantages.
+			\end{itemize}
+		}
+	
+	\item<7->
+		advice
+		
+		\only<7>{
+			\begin{itemize}
+			\item
+				I adviced them to see the police.
+			\item
+				My prof gave me a good advice / advices.
+			\item
+				Ask your lawyer for advise.
+			\item
+				What would you advise doing?
+			\end{itemize}
+		}
+	
+	\item<8->
+		affect
+		
+		\only<8>{
+			\begin{itemize}
+			\item
+				What is the affect of computers in education?
+			\item
+				How do computers affect on education?
+			\end{itemize}
+		}
+	
+	\item<9->
+		after
+		
+		\only<9>{
+			\begin{itemize}
+			\item
+				I studied math. After that, I have been unemployed.
+			\end{itemize}
+		}
+	
+	\item<10->
+		allow
+		
+		\only<10>{
+			\begin{itemize}
+			\item
+				They allow to the prisoners to keep birds.
+			\item
+				The dissident was allowed leaving the country.
+			\item
+				Online blogs allow strong emotions.
+			\end{itemize}
+		}
+	
+% 	\item<->
+% 		a
+% 		
+% 		\only<>{
+% 			\begin{itemize}
+% 			\item
+% 			\end{itemize}
+% 		}
+		
+	\end{itemize}
+	
+	{\only<11>{}}
+	
+	\vspace{-10cm}
+\end{frame}
+
+
+
+\begin{frame}[t]{Longman dictionary of common errors}{Turton \& Heaton, Longman 2003}
+	\begin{itemize}
+	
+	\item<1->
+		also
+		
+		\only<1>{
+			\begin{itemize}
+			\item
+				We also would like to publish more.
+			\item
+				The journal publishes also opinion columns.
+			\item
+				A new bridge is too expensive.
+				Also, the area is protected.
+			\end{itemize}
+		}
+	
+	\item<2->
+		alternate, alternatively
+		
+		\only<2>{
+			\begin{itemize}
+			\item
+				We should make alternate arrangements.
+			\item
+				As parents we take care of the kids alternatively.
+			\end{itemize}
+		}
+	
+	\item<3->
+		among
+		
+		\only<3>{
+			\begin{itemize}
+			\item
+				We should develop ties among Hungarian and US scholars.
+			\item
+				Among these arguments, the most powerful is ...
+			\end{itemize}
+		}
+	
+	\item<4->
+		amount
+		
+		\only<4>{
+			\begin{itemize}
+			\item
+				The amount of accidents is rising.
+			\item
+				A grant is usually not a high amount of money.
+			\item
+				Tremendous amounts of research have been published.
+			\end{itemize}
+		}
+	
+	\item<5->
+		announce, announcement
+		
+		\only<5>{
+			\begin{itemize}
+			\item
+				The school suddently announced the students to stay home.
+			\item
+				I tend to ignore commercial announcements in newspapers.
+			\end{itemize}
+		}
+	
+	\item<6->
+		another
+		
+		\only<6>{
+			\begin{itemize}
+			\item
+				Rio has another important site than the famous statue.
+			\item
+				We need an other chair. 
+			\item
+				Please ask another person for reviewing your paper.
+			\item
+				Don't publish another's work as your own.
+			\end{itemize}
+		}
+	
+	\item<7->
+		answer
+		
+		\only<7>{
+			\begin{itemize}
+			\item
+				Nobody has been able to find an answer for this problem.
+			\item
+				Why does it take 6 months to answer to my inquiry?
+			\item
+				I couldn't answer to the last two questions.
+			\item
+				Nobody answered me.
+			\end{itemize}
+		}
+	
+	\item<8->
+		anyway, anyhow
+		
+		\only<8>{
+			\begin{itemize}
+			\item
+				Use \textbf{however},
+				\textbf{nevertheless}, etc.
+				if you have to.
+			\end{itemize}
+		}
+	
+	\item<9->
+		appear
+		
+		\only<9>{
+			\begin{itemize}
+			\item
+				Unfortunately, another problem appeared.
+			\item
+				It would seem to appear that ... (``hedging'')
+			\end{itemize}
+		}
+	
+	\item<10->
+		apply
+		
+		\only<10>{
+			\begin{itemize}
+			\item
+				I applied to the fellowship, which was rejected.
+			\item
+				We apply the method X to do Y.
+			\end{itemize}
+		}
+	
+	\item<11->
+		approach
+		
+		\only<11>{
+			\begin{itemize}
+			\item
+				...
+			\end{itemize}
+		}
+	
+	\end{itemize}
+	
+	\vspace{-10cm}
+\end{frame}
+
+
+
+\begin{frame}[t]{How to not to ``approach''}{}
+	
+	From ``A machine learning-based test for adult sleep apnoea screening [..]'' by D.~Alvarez et 10 al., Scientific Reports (2020).
+	
+	\only<1>{
+		\begin{quote}
+			The most appropriate physiological signals to develop simplified as well as accurate screening tests for obstructive sleep apnoea (OSA) remain unknown. This study aimed at assessing whether joint analysis of at-home oximetry and airflow recordings by means of machine-learning algorithms leads to a significant diagnostic performance increase compared to single-channel approaches.
+			
+			\hfill [Abstract]
+		\end{quote}
+	}
+	
+	\only<2>{
+		\begin{quote}
+			Regression support vector machines were used to estimate the [apnoea-hypopnoea index] from single-channel and dual-channel approaches.
+			
+			\hfill [Abstract]
+		\end{quote}
+	}
+	
+	\only<3>{
+		\begin{quote}
+			Overall performance of the dual-channel approach (kappa: 0.71; 4-class accuracy: 81.3\%) significantly outperformed individual oximetry (kappa: 0.61; 4-class accuracy: 75.0\%) and airflow (kappa: 0.42; 4-class accuracy: 61.5\%).
+			
+			\hfill [Abstract]
+		\end{quote}
+	}
+	
+	\only<4>{
+		\begin{quote}
+			According to our findings, oximetry alone was able to reach notably high accuracy, particularly to confirm severe cases of the disease. Nevertheless, oximetry and airflow showed high complementarity leading to a remarkable performance increase compared to single-channel approaches.
+			
+			\hfill [Abstract]
+		\end{quote}
+	}
+	
+	\only<5>{
+		\begin{quote}
+			Particularly, support vector machines (SVMs) reached high diagnostic performance in binary classification problems (OSA-positive vs. OSA-negative) improving conventional approaches [15, 19, 20].
+		\end{quote}
+	}
+	
+	\only<6>{
+		\begin{quote}
+			All recordings, both ${Sp O_2}$ and airflow, with a total recording time <4 h after pre-processing were discarded due to insufficient data for accurate estimation of the AHI from a single/dual-channel approach [6].
+		\end{quote}
+	}
+	
+	\only<7>{
+		\begin{quote}
+			Additionally, in order to avoid dependence on a particular training dataset, a bootstrapping approach was implemented.
+			Accordingly, FCBF was repeated using 1000 bootstrap replicates derived from the training set. 
+		\end{quote}
+	}
+	
+	\only<8>{
+		\begin{quote}
+			As under the most common classification approach, the learning stage of a SVM algorithm for regression is based on the principle of structural risk minimisation.
+		\end{quote}
+	}
+	
+	\only<9>{ 
+		\begin{quote}
+			Table 3 shows the 4-class confusion matrices for the proposed approaches, whereas Tables 4--6 summarise the diagnostic assessment when setting a single fixed threshold for binary classification.
+		\end{quote}
+	}
+	
+	\only<10>{
+		\begin{quote}
+			Under a dual-channel approach, variables within the joint optimum feature subset were different compared with features selected in each single-channel approach, particularly airflow-derived variables (Fig.~2). 
+			While the histogram of relevance values for $Sp O_2$-derived features is very similar under both single- and dual-channel approaches, the profile for airflow-derived features is completely different.
+		\end{quote}
+	}
+	
+	\only<11>{
+		\begin{quote}
+			Accordingly, the performance of the dual-channel approach significantly outperformed individual $Sp O_2$ and airflow. AUC of $SVM_{{Sp O_2} + AF}$ model was significantly higher (p < 0.01) for all diagnostic thresholds. Moreover, in contrast to single-channel approaches, balanced sensitivity-specificity pairs were always obtained.
+		\end{quote}
+	}
+	
+	\only<12>{
+		\begin{quote}
+			Using a less conservative approach, with patients showing an estimated AHI $\geq$ 15 events/h directly referred for treatment since 100\% of patients categorised as moderate-severe OSA had at least mild OSA with symptoms (71 out of 77 actually had moderate or severe OSA, while 6 out of 77 had mild OSA), the number of PSGs potentially avoidable would increase up to 89.6\%.
+		\end{quote}
+	}
+	
+	\only<13>{
+		\begin{quote}
+			Our proposal is a robust approach without significantly increasing the complexity and intrusiveness of portable monitoring. Indeed, commercial portable devices for simultaneous measurement of oximetry an airflow already exist, such as the widely known ARES and ApneaLink.
+		\end{quote}
+	}
+	
+	\only<14>{
+		\begin{quote}
+			This study provides significant evidence on the superiority of a dual-channel approach in the framework of unattended abbreviated monitoring for OSA screening. Particularly, SpO2 and airflow signals have been found to provide complementary information leading to a remarkable performance increase compared to single-channel approaches.
+			
+			\hfill [Conclusions]
+		\end{quote}
+	}
+	
+	\only<15>{
+		\begin{quote}
+			All data generated during this study (estimated AHI) are included in this published article and its Supplementary Information Files. Additionally, the datasets (raw signals) analysed during the current study are available from the corresponding author on reasonable request.
+			
+			\hfill [Data availability]
+		\end{quote}
+	}
+	
+	\only<16>{
+		\begin{quote}
+			Conception and design: D.A., A.C.-H., R.H., F.C. 
+			Patient recruitment and data acquisition: A.C.-H., A.C., F.M., C.A.A. 
+			Machine learning: D.A., A.C.-H., G.C.G.-T., F.V.-V., V.B.-G. 
+			Statistical analysis: D.A., A.C.-H., T.R. 
+			Interpretation of results: D.A., A.C.-H., A.C., R.H., F.C. 
+			Drafting and reviewing the manuscript for important intellectual content: D.A., A.C.-H., A.C., G.C.G.-T., F.V.-V., V.B.-G., F.M., C.A.A., T.R., R.H., F.C.
+			
+			\hfill [Contributions]
+		\end{quote}
+	}
+	
+	\Bottom{
+		\href{https://www.nature.com/articles/s41598-020-62223-4}{https://www.nature.com/articles/s41598-020-62223-4}
+	}
+\end{frame}
+
+
+
+\begin{frame}[t]{Longman dictionary of common errors}{Turton \& Heaton, Longman 2003}
+	
+	\begin{itemize}
+	\item<1->
+		approximately
+		
+		\only<1>{
+			\begin{itemize}
+			\item
+				I arrived in Buda/pest approximately one year ago.
+			\item
+				The train fare is approximately 20 USD.
+			\end{itemize}
+		}
+		
+	\item<2->
+		argue
+		
+		\only<2>{
+			\begin{itemize}
+			\item
+				We argued in class about the usage of passive voice.
+			\item
+				I would argue that short papers are preferable. 
+				(``hedging'')
+			\end{itemize}
+		}
+		
+	\item<3->
+		arguments
+		
+		\only<3>{
+			\begin{itemize}
+			\item
+				There are good arguments 
+				for living in the countryside.
+			\item 
+				Having a child is a personal argument.
+			\end{itemize}
+		}
+		
+	\item<4->
+		arise
+		
+		\only<4>{
+			\begin{itemize}
+			\item
+				Many problems have aroused from overpopulation.
+			\end{itemize}
+		}
+		
+	\item<5->
+		as
+		
+		\only<5>{
+			\begin{itemize}
+			\item
+				My skin is not as the skin of a young person.
+			\item
+				I suddenly feel as fifteen again.
+			\item
+				Let's talk important issues as child abuse and poverty.
+			\item
+				As we live upstairs, so we didn't notice the noise.
+			\item
+				I was treated as an old friend.
+			\end{itemize}
+		}
+		
+	\item<6->
+		as well as
+		
+		\only<6>{
+			\begin{itemize}
+			\item
+				Each week he wrote letters, as well as called her.
+			\end{itemize}
+		}
+		
+	\item<7->
+		aspect
+		
+		\only<7>{
+			\begin{itemize}
+			\item
+				From a biological aspect, 
+				the two plants are similar.
+			\item 
+				In this aspect
+				all plants are the same.
+			\item
+				Are humans superior to dolphins in every aspect?
+			\end{itemize}
+		}
+		
+	\item<8->
+		assist, attend
+		
+		\only<8>{
+			\begin{itemize}
+			\item
+				Everybody has to assist the meeting.
+			\item
+				My labmate assisted me to write up.
+			\item
+				Ask the secretary to assist you.
+			\item
+				I won't be able to attend your wedding.
+			\item
+				It's important to attend to all courses.
+			\end{itemize}
+		}
+		
+	\item<9->
+		attempt
+		
+		\only<9>{
+			\begin{itemize}
+			\item
+				The attempt of seizing power failed.
+			\end{itemize}
+		}
+		
+	\item<10->
+		average
+		
+		\only<10>{
+			\begin{itemize}
+			\item
+				Our average patient requires 2-3 months
+				of hospitalization.
+			\item
+				The average of hours on social networks has increased.
+			\end{itemize}
+		}
+		
+	\item<11->
+		avoid
+		
+		\only<11>{
+			\begin{itemize}
+			\item
+				Please avoid to ring the door bell after midnight.
+			\end{itemize}
+		}
+	\end{itemize}
+	
+	\only<12>{ }
+	
+	\vspace{-10cm}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section{Extra}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\newcounter{finalframe}
+\setcounter{finalframe}{\value{framenumber}}
+% Backup frames follow
+%
+%
+% \begin{frame}
+% 	Appendix
+% \end{frame}
+%
+%%
+%
+%\begin{frame}
+%	%
+%\end{frame}
+%
+%
+% FINAL SLIDE
+\setbeamercolor{background canvas}{bg=black}
+\begin{frame}[plain,b]
+	\hfill
+	\tiny
+	\color{gray}
+	this slide is intentionally left blank
+\end{frame}
+\setbeamercolor{background canvas}{bg=white}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section{Bibliography}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% {
+% \tiny
+% \bibliography{../../../r/refs}
+% }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{framenumber}{\value{finalframe}}
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
