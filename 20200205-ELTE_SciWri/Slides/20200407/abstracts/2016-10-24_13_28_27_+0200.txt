@@ -1,0 +1,33 @@
+\begin{quote}
+Stochastic ordinary differential equations
+are typically solved numerically by sampling.
+
+
+However, the first and second moments
+satisfy a deterministic equation of their own.
+
+
+For the standard examples
+with additive (Ornstein--Uhlenbeck process) or
+multiplicative (Geometric Brownian motion)
+noise
+we derive these deterministic equations
+in variational form
+and
+discuss their well-posedness in detail.
+
+
+Notably,
+the equation for second moment in the multiplicative case
+is naturally posed on
+projective--injective tensor products
+as trial--test spaces.
+
+
+We propose several Petrov--Galerkin discretizations
+based on tensor product piecewise polynomials
+and analyze their stability and convergence
+in the natural norms.
+
+
+\end{quote}

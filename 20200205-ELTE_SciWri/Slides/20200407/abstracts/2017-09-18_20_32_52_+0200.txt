@@ -1,0 +1,55 @@
+\begin{quote}
+Numerical methods for stochastic \ra{partial} differential equations
+typically
+estimate moments of the solution
+from sampled paths.
+
+
+Instead,
+in this paper
+we directly target
+the deterministic equations
+satisfied by the first and second moments, as well as the covariance.
+
+
+
+\ra{%
+First, we focus on stochastic ordinary differential equations.
+
+
+Thus,
+}%
+for the canonical examples
+with additive noise (Ornstein--Uhlenbeck process)
+or
+multiplicative noise (geometric Brownian motion)
+we derive these deterministic equations
+in variational form
+and
+discuss their well-posedness in detail.
+
+
+Notably,
+the second moment equation in the multiplicative case
+is naturally posed on
+projective--injective tensor products
+as trial--test spaces.
+
+
+We propose Petrov--Galerkin discretizations
+based on tensor product piecewise polynomials
+and analyze their stability and convergence
+in \ra{these} natural norms.
+
+
+
+\ra{%
+Second, we explain how
+the computation of the second moment
+of stochastic partial differential equations
+can be reduced to
+a system of equations the above type.
+
+
+}%\ra
+\end{quote}

@@ -1,0 +1,561 @@
+\documentclass[
+	onepage, 
+	12pt,
+	hyperref={
+		colorlinks = true,
+		linkcolor = blue,
+		urlcolor  = blue,
+		citecolor = blue,
+		anchorcolor = blue
+	},
+]{beamer}
+%
+\mode<presentation>{
+	\setbeamercovered{transparent}
+	%\beamertemplatenavigationsymbolsempty
+	\setbeamertemplate{footline}[frame number]
+% 	\usefonttheme{professionalfonts}
+}
+
+
+% % https://tex.stackexchange.com/questions/446063/change-background-colour-to-black-and-text-to-white
+% \usecolortheme{owl}
+
+% https://tex.stackexchange.com/questions/34166/understanding-minipages-aligning-at-top
+\usepackage{adjustbox}
+
+% https://tex.stackexchange.com/questions/124256/how-do-i-get-numbered-entries-in-a-beamer-bibliography
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+
+% https://tex.stackexchange.com/questions/49048/how-to-cite-one-bibentry-in-full-length-in-the-body-text
+\usepackage{bibentry}
+\bibliographystyle{plain}
+\nobibliography*
+%
+% https://tex.stackexchange.com/questions/163827/wrong-vertical-spaces-using-bibentry-within-beamer/163842
+\def\mybeamernewblock{%
+  \usebeamercolor[fg]{bibliography entry author}%
+  \usebeamerfont{bibliography entry author}%
+  \usebeamertemplate{bibliography entry author}%
+  \def\newblock{%
+    \usebeamercolor[fg]{bibliography entry title}%
+    \usebeamerfont{bibliography entry title}%
+    \usebeamertemplate{bibliography entry title}%
+    \def\newblock{%
+      \usebeamercolor[fg]{bibliography entry location}%
+      \usebeamerfont{bibliography entry location}%
+      \usebeamertemplate{bibliography entry location}%
+      \def\newblock{%
+        \usebeamercolor[fg]{bibliography entry note}%
+        \usebeamerfont{bibliography entry note}%
+        \usebeamertemplate{bibliography entry note}}}}%
+  \leavevmode
+}
+\newenvironment{references}{\begin{itemize}\let\newblock\mybeamernewblock}{\end{itemize}}
+
+
+\setbeamersize{text margin left=10pt, text margin right=10pt}
+\setbeamertemplate{itemize items}[circle]
+
+\beamertemplatenavigationsymbolsempty
+
+% http://tex.stackexchange.com/questions/8680/how-can-i-insert-a-newline-in-a-framebox
+%\usepackage{minibox}
+%\usepackage{framed}
+%\usepackage[usestackEOL]{stackengine}
+
+% https://tex.stackexchange.com/questions/433450/how-to-frame-any-environment-like-minipage-and-others
+\usepackage{framed}
+
+% % https://tex.stackexchange.com/questions/91124/itemize-removing-natural-indent
+% \usepackage{enumitem}
+
+% % http://tex.stackexchange.com/questions/167000/annotating-tables-with-tikz-adding-arrows
+% \usepackage{color, colortbl}
+\usepackage{tikz}
+\tikzstyle{every picture}+=[remember picture]
+%\usetikzlibrary{tikzmark, positioning, fit, shapes.misc}
+
+%% http://tex.stackexchange.com/questions/91124/itemize-removing-natural-indent
+%\usepackage{enumitem}
+
+%% http://tex.stackexchange.com/questions/41408/a-five-level-deep-list
+%\usepackage{enumitem}
+%\setlistdepth{9}
+
+% https://tex.stackexchange.com/questions/20792/how-to-superimpose-latex-on-a-picture
+\usepackage{overpic}
+
+% https://en.wikibooks.org/wiki/LaTeX/Colors
+\usepackage{xcolor}
+\definecolor{white1}{rgb}{0.95, 0.95, 1}
+\definecolor{white2}{rgb}{1, 0.95, 0.95}
+
+
+% % http://tex.stackexchange.com/questions/32661/how-to-locate-figures-with-x-y-specified-location-in-a-presentation
+% \usepackage[absolute,overlay]{textpos} % absolute positioning of stuff
+% \setlength{\TPHorizModule}{1mm}
+% \setlength{\TPVertModule}{1mm}
+
+\usepackage{graphicx}
+\graphicspath{{../img/}}
+\AtBeginDocument{\DeclareGraphicsExtensions{.eps, .png, .gif, .pdf, .jpg}}
+
+\usepackage[makeroom]{cancel}
+
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+
+% \usepackage{amssymb}
+% \usepackage{nicefrac}
+% \usepackage{bbm}
+% \usepackage{esint}
+% \usepackage{sidecap}
+
+% \hypersetup{pdfpagemode=FullScreen}
+
+\newcommand{\HIDE}[1]{}
+
+\newcommand{\skipline}{{\ }\\}
+
+\author{RA}
+\subject{Talks}
+
+\newcommand{\ra}[1]{#1}
+\newcommand{\kk}[1]{#1}
+
+\newcommand{\CITE}[1]{{\footnotesize[#1]}}
+
+% \input{definitions}
+
+\providecommand{\DIV}{\mathop{\text{div}}}
+\providecommand{\GRAD}{\mathop{\text{grad}}}
+
+\providecommand{\IE}{\mathbb{E}}
+\providecommand{\IP}{\mathbb{P}}
+\providecommand{\IR}{\mathbb{R}}
+\providecommand{\IZ}{\mathbb{Z}}
+
+\providecommand{\duality}[2]{\langle #1 \rangle_{#2}}
+\providecommand{\norm}[2]{\| #1 \|_{#2}}
+\providecommand{\seminorm}[2]{| #1 |_{#2}}
+\providecommand{\VERT}{\ensuremath{| \! | \! |}}
+\newcommand{\tnorm}[2]{\VERT{#1}\VERT_{{#2}}}
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+
+\providecommand{\Abf}{\mathbf{A}}
+\providecommand{\Bbf}{\mathbf{B}}
+\providecommand{\Dbf}{\mathbf{D}}
+\providecommand{\Ibf}{\mathbf{I}}
+\providecommand{\Jbf}{\mathbf{J}}
+\providecommand{\Fbf}{\mathbf{F}}
+\providecommand{\Hbf}{\mathbf{H}}
+\providecommand{\Mbf}{\mathbf{M}}
+\providecommand{\Tbf}{\mathbf{T}}
+\providecommand{\Pbf}{\mathbf{P}}
+\providecommand{\Vbf}{\mathbf{V}}
+\providecommand{\pbf}{\mathbf{p}}
+\providecommand{\ubf}{\mathbf{u}}
+\providecommand{\vbf}{\mathbf{v}}
+\providecommand{\wbf}{\mathbf{w}}
+\providecommand{\ybf}{\mathbf{y}}
+\providecommand{\zbf}{\mathbf{z}}
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+\newcommand{\from}{\colon}
+
+\providecommand{\T}{\mathsf{T}}
+
+\renewcommand{\hat}[1]{\widehat{#1}}
+\renewcommand{\tilde}[1]{\widetilde{#1}}
+
+\newcommand{\rd}{\,\mathrm{d}}
+
+\newcommand{\TEXT}[1]{\quad\text{#1}\quad}
+
+% http://tex.stackexchange.com/questions/211518/beamer-vfill-and-itemize
+\def\Bottom#1{\vskip 0pt plus 1filll #1}
+\def\BottomRight#1{\Bottom{\hfill #1}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}[plain,t]
+	\begin{center}
+        \vspace{1cm}
+		%\small
+		%
+		Scientific writing
+		\\
+		{\small\color{gray} Session IV: the abstract}
+		%
+% 		\\[1\baselineskip]
+% 		\small
+% 		RA
+% 		\\[1\baselineskip]
+% 		\footnotesize
+% 		\EMAIL
+
+		\vspace{1cm}
+		%
+
+	\end{center}
+	
+	
+	\Bottom{
+		\footnotesize
+		R.A.
+		\hfill
+		ELTE, Apr 7, 2020
+		\\ {\ }
+	}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%
+%%%%%%%%%%%%
+
+\setbeamercolor{background canvas}{bg=white1}
+\begin{frame}[t]{Evolution of an abstract, example I}{}
+	\footnotesize
+	
+	{\only<1>{%
+		Work on 
+		%
+		\begin{quote}
+			R.A., Stability of sparse space-time finite element discretizations of linear parabolic evolution equations, 
+			IMA JNA 33(1), 2013
+		\end{quote}
+		%
+		began in June 2009, 
+		first iteration published in July 2010.
+	}}%
+
+	
+	{\only<2>{%
+		2010-07-23
+		\begin{quote}
+			For the model linear parabolic equation we propose a nonadaptive wavelet finite element space-time discretization motivated by the work of Schwab \& Stevenson (2009). The problem is reduced to a finite, overdetermined linear system of equations. We prove stability, i.e., that the finite section normal equations are well-conditioned if appropriate Riesz bases are employed, and that the Galerkin solution converges quasi-optimally in the natural solution space for the original equation. Numerical examples confirm the theory.
+		\end{quote}
+		
+		\Bottom{%
+			R.A., Space-time wavelet FEM for parabolic equations, 
+			\\
+			SAM report, 2010
+		}
+	}}%
+	
+	{\only<3>{%
+		2011-04-28
+		\begin{quote}
+			For a class of linear parabolic equations we propose a nonadaptive sparse space-time Galerkin least squares discretization. We formulate criteria on the trial and test spaces for the well-posedness of the corresponding Galerkin least squares solution. In order to obtain discrete stability uniformly in the discretization parameters, we allow test spaces which are suitably larger than the trial space. The problem is then reduced to a finite, overdetermined linear system of equations by a choice of bases. We present several strategies that render the resulting normal equations wellconditioned uniformly in the discretization parameters. The numerical solution is then shown to converge quasi-optimally to the exact solution in the natural space for the original equation. Numerical examples for the heat equation confirm the theory.
+		\end{quote}
+		
+		\Bottom{%
+			R.A., Sparse space-time finite element discretization of parabolic equations, 
+			\\
+			SAM report, 2011
+		}
+	}}%
+
+	{\only<4>{%
+		2012-03-30
+		\begin{quote}
+			The abstract linear parabolic evolution equation is formulated as a well-posed linear operator equation for which a conforming minimal residual Petrov--Galerkin discretization framework is developed: the approximate solution is defined as the minimizer of a suitable functional residual over the discrete test space, and may be obtained numerically from an equivalent algebraic residual minimization problem. This approximate solution is shown to be well defined and to converge quasi-optimally in the natural norm if the discrete trial and test spaces are stable, i.e., if the discrete inf-sup condition is satisfied with a uniform positive lower bound. For the parabolic operator we devise an abstract criterion for the stability of pairs of space-time trial and test spaces, and construct hierarchic families of trial and test spaces of a sparse space-time tensor-product type that satisfy this criterion. The theory is applied to the concrete example of the diffusion equation and is illustrated numerically.
+		\end{quote}
+		
+		\vspace{-1cm}
+		
+		\Bottom{%
+			R.A., Stability of sparse space-time finite element discretizations of linear parabolic evolution equations, 
+			IMA JNA 33(1), 2013
+		}
+	}}%
+\end{frame}
+
+
+%%%%%%
+
+
+\setbeamercolor{background canvas}{bg=white2}
+\begin{frame}[t]{Evolution of an abstract, example II}{}
+	\footnotesize
+	
+	{\only<1>{%
+		Work on
+		%
+		\begin{quote}
+			R.A. \& K.~Kirchner, 
+			Numerical methods for the 2nd moment of stochastic ODEs,
+			2016,
+			\href{https://arxiv.org/abs/1611.02164v1}{https://arxiv.org/abs/1611.02164v1}
+		\end{quote}
+		%
+		began on 2015-07-17.
+		
+		{\ }
+		
+		First nontrivial abstract recorded on 2016-10-24.
+	}}%	
+	{\only<2>{%
+		2016-10-24
+		\\[\baselineskip]
+		\input{abstracts/2016-10-24_11_02_59_+0200.txt}
+	}}%
+	{\only<3>{%
+		2016-10-25
+		\\
+		\input{abstracts/2016-10-25_22_11_26_+0200.txt}
+	}}%
+	{\only<4>{%
+		2016-10-26
+		\\[\baselineskip]
+		\input{abstracts/2016-10-26_00_04_25_+0200.txt}
+	}}%
+	{\only<5>{%
+		2016-10-30
+		\\[\baselineskip]
+		\input{abstracts/2016-10-30_00_24_03_+0200.txt}
+	}}%
+	{\only<6>{%
+		2017-02-13
+		\\[\baselineskip]
+		\input{abstracts/2017-02-13_13_56_29_+0100.txt}
+	}}%
+	{\only<7>{%
+		2017-02-14
+		\\[\baselineskip]
+		\input{abstracts/2017-02-14_18_29_14_+0100.txt}
+	}}%
+	{\only<8>{%
+		2017-02-17
+		\\[\baselineskip]
+		\input{abstracts/2017-02-17_16_08_23_+0100.txt}
+	}}
+\end{frame}
+
+
+%%%%%%
+
+
+\setbeamercolor{background canvas}{bg=white}
+\begin{frame}
+	\begin{center}
+		What is the purpose of the abstract?
+		
+		\href{http://bit.ly/sci-wri-20200407-abstracts}{\small http://bit.ly/sci-wri-20200407-abstracts}
+	\end{center}
+\end{frame}
+
+%%%%%%
+
+\setbeamercolor{background canvas}{bg=white1}
+\begin{frame}[t]{Abstracts, exhibit A}{}
+	\footnotesize
+	%
+	Han et 38 al., Nature, 2020
+	\\
+	\href{https://doi.org/10.1038/s41586-020-2157-4}{doi:10.1038/s41586-020-2157-4}
+	%
+	\begin{quote}
+		Single-cell analysis is a valuable tool to dissect cellular heterogeneity in complex systems${}^{\text{1}}$. Yet, a comprehensive single-cell atlas has not been achieved for humans. We used single-cell mRNA sequencing to determine the cell-type composition of all major human organs and constructed a scheme for the human cell landscape (HCL). We revealed a single-cell hierarchy for many tissues that have not been well characterised. We established a 'single-cell HCL analysis' pipeline that helps to define human cell identity. Finally, we performed a single-cell comparative analysis of landscapes from both human and mouse to reveal the conserved genetic networks. We found that stem and progenitor cells exhibit strong transcriptomic stochasticity, while the differentiated cells are more distinct. Our study provides a valuable resource for human biology.
+	\end{quote}
+\end{frame}
+
+%%%
+
+\setbeamercolor{background canvas}{bg=white2}
+\begin{frame}[t]{Abstracts, exhibit B}{}
+	\footnotesize
+	%
+	Purnell, Idsardi, \& Baugh, 
+	J of Language and Social Psychology, 1999
+	\\
+	\href{https://journals.sagepub.com/doi/10.1177/0261927X99018001002}{doi:10.1177/0261927X99018001002}
+	%
+	\begin{quote}
+		The ability to discern the use of a nonstandard dialect is often enough information to also determine the speaker's ethnicity, and speakers may consequently suffer discrimination based on their speech. This article, detailing four experiments, shows that housing discrimination based solely on telephone conversations occurs, dialect identification is possible using the word hello, and phonetic correlates of dialect can be discovered. In one experiment, a series of telephone surveys was conducted; housing was requested from the same landlord during a short time period using standard and nonstandard dialects. The results demonstrate that landlords discriminate against prospective tenants on the basis of the sound of their voice during telephone conversations. Another experiment was conducted with untrained participants to confirm this ability; listeners identified the dialects significantly better than chance. Phonetic analysis reveals that phonetic variables potentially distinguish the dialects.
+	\end{quote}
+\end{frame}
+
+%%%
+
+\setbeamercolor{background canvas}{bg=white1}
+\begin{frame}[t]{Abstracts, exhibit C}{}
+	\footnotesize
+	T.~H.~Huxley, On a piece of chalk, 1968
+	\\
+	\href{http://bit.ly/huxley-on-chalk}{http://bit.ly/huxley-on-chalk}
+	
+	\begin{quote}
+		{\only<1>{%
+			In this paper we treat chalk. We describe its chemical and physical structure. We present its origins, show how they were uncovered. We explore how it relates to Geology and Biology. Finally, we close with some open questions.
+		}}%
+		{\only<2>{%
+			We can see chalk in many different regions of the world. The structure and composition of all of it is quite similar, so it must have been through a similar process of formation. In this work, we argue that the formation of chalk is done in the bottom of the oceans, mainly by remains of Globigerina. We also address the time scale problem of this process and how the evolution of species is a possible solution. More detail analysis should be done, but the hypothesis presented for the chalk formation is promising.
+		}}%
+		{\only<3>{%
+			The uniform composition of chalk across the world 
+			suggests a common process of formation. 
+			We review the evidence that chalk 
+			originates
+			as sediment of skeletons of micro-organisms in the oceans. 
+			We also relate the time scales of this process
+			to the pace 
+			of the evolution of species
+			and
+			of geological formations.
+		}}%
+		{\only<4>{%
+			...
+		}}%
+	\end{quote}
+\end{frame}
+
+%%%
+
+\setbeamercolor{background canvas}{bg=white2}
+\begin{frame}[t]{Abstracts, exhibit D}{}
+	\footnotesize
+	
+	{\only<1>{%
+		Nicolaou, Lahav, Lemos, Hartley, \& Braden, arXiv, 2019
+		\\
+		\href{https://arxiv.org/abs/1909.09609v2}{arxiv.org/abs/1909.09609v2}
+		
+		\begin{quote}
+			In this work we investigate the systematic uncertainties that arise from the calculation of the peculiar velocity when estimating the Hubble constant ($H_0$) from gravitational wave standard sirens. We study the GW170817 event and the estimation of the peculiar velocity of its host galaxy, NGC 4993, when using Gaussian smoothing over nearby galaxies. 
+			NGC 4993 being a relatively nearby galaxy, at $\sim 40 \ {\rm Mpc}$ away, is subject to the significant effect of peculiar velocities. We demonstrate a direct dependence of the estimated peculiar velocity value on the choice of smoothing scale. We show that when not accounting for this systematic, a bias of 
+			$\sim 200 \ {\rm km \ s ^{-1}}$ 
+			in the peculiar velocity incurs a bias of 
+			$\sim 4 \ {\rm km \ s ^{-1} \ Mpc^{-1}}$ 
+			on the Hubble constant. 
+			We formulate a Bayesian model that accounts for the dependence of the peculiar velocity on the smoothing scale and by marginalising over this parameter we remove the need for a choice of smoothing scale. The proposed model yields 
+			$H_0 = 68.6 ^{+14.0} _{-8.5}~{\rm km\ s^{-1}\ Mpc^{-1}}$. 
+			We demonstrate that under this model a more robust unbiased estimate of the Hubble [..] is obtained.
+		\end{quote}
+	}}%
+	{\only<2>{%
+		Andersson \& Gr\"onkvist,
+		Int J of Hydrogen Energy, 2019
+		\\
+		\href{https://doi.org/10.1016/j.ijhydene.2019.03.063}{doi:10.1016/j.ijhydene.2019.03.063}
+		
+		\begin{quote}
+			The large-scale storage of hydrogen plays a fundamental role in a potential future hydrogen economy. Although the storage of gaseous hydrogen in salt caverns already is used on a full industrial scale, the approach is not applicable in all regions due to varying geological conditions. Therefore, other storage methods are necessary. In this article, options for the large-scale storage of hydrogen are reviewed and compared based on fundamental thermodynamic and engineering aspects. The application of certain storage technologies, such as liquid hydrogen, methanol, ammonia, and dibenzyltoluene, is found to be advantageous in terms of storage density, cost of storage, and safety. The variable costs for these high-density storage technologies are largely associated with a high electricity demand for the storage process or with a high heat demand for the hydrogen release process. If hydrogen is produced via electrolysis and stored during times of low electricity prices in an industrial setting, these variable costs may be tolerable.
+		\end{quote}
+
+	}}%
+	{\only<3>{%
+		Torelli, J Computational and Applied Math, 1989
+		\\
+		\href{https://doi.org/10.1016/0377-0427(89)90071-X}{doi:10.1016/0377-0427(89)90071-X}
+		
+		\begin{quote}
+			Consider the following delay differential equation (DDE)
+			\begin{align}
+				\tag{0.1}
+				y' = f(t, y(t), y(t - \tau(t)),
+				\quad
+				t \geq t_0,
+			\end{align}
+			with the initial condition 
+			\begin{align}
+				y(t) = \Phi
+				\quad \text{for} \quad
+				t \leq t_0
+				,
+			\end{align}
+			where $f$ and $\Phi$ are such that (0.1), (0.2) has a unique solution $y(t)$.
+			%
+			The author gives sufficient conditions for the asymptotic stability of the equation (0.1) for which he introduces new definitions of numerical stability. The approach is reminiscent of that from the nonlinear, stiff ordinary differential equation (ODE) field. He investigates stability properties of the class of one-point collocation rules. In particular, the backward Euler method turns out to be stable with respect to all the given definitions.
+		\end{quote}
+	}}%
+	{\only<4>{%
+		A paper of your choice.
+	}}%
+
+	\vspace{-5\baselineskip}
+\end{frame}
+
+
+\setbeamercolor{background canvas}{bg=white}
+\begin{frame}
+	\begin{center}
+		HWK
+		\\
+		\href{http://bit.ly/sci-wri-20200407}{http://bit.ly/sci-wri-20200407}
+	\end{center}
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section{Extra}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\newcounter{finalframe}
+\setcounter{finalframe}{\value{framenumber}}
+% Backup frames follow
+%
+%
+% \begin{frame}
+% 	Appendix
+% \end{frame}
+%
+%%
+%
+%\begin{frame}
+%	%
+%\end{frame}
+%
+%
+% FINAL SLIDE
+\setbeamercolor{background canvas}{bg=black}
+\begin{frame}[plain,b]
+	\hfill
+	\tiny
+	\color{gray}
+	this slide is intentionally left blank
+\end{frame}
+\setbeamercolor{background canvas}{bg=white}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section{Bibliography}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% {
+% \tiny
+% \bibliography{../../../r/refs}
+% }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{framenumber}{\value{finalframe}}
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+

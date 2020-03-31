@@ -1,0 +1,38 @@
+\begin{quote}
+Numerical methods for stochastic ordinary differential equations
+typically
+estimate moments of the solution
+from sampled paths.
+
+
+Instead,
+in this paper
+we directly target
+the deterministic equation
+satisfied by the first moment \ra{(mean)} and second moment \ra{(autocorrelation)}.
+
+
+For the canonical examples
+with additive noise (Ornstein--Uhlenbeck process)
+or
+multiplicative noise (geometric Brownian motion)
+we derive these deterministic equations
+in variational form
+and
+discuss their well-posedness in detail.
+
+
+Notably,
+the second moment equation in the multiplicative case
+is naturally posed on
+projective--injective tensor products
+as trial--test spaces.
+
+
+We propose Petrov--Galerkin discretizations
+based on tensor product piecewise polynomials
+and analyze their stability and convergence
+in the natural norms.
+
+
+\end{quote}
